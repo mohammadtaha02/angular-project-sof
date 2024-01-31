@@ -1,0 +1,18 @@
+<div class="about-container">
+  <ul>
+    <li>About Us Page</li>
+    <li>We arrange and prepare courses for undergraduate students</li>
+    <button (click)="DarkWhite()"> Dark </button>
+  </ul>
+  <table  [ngClass]="{'dark-mode': darkMode}">
+    <tr>
+      <th><img [src]="img1" alt="Member 1" class="circular-image"></th>
+      <th><img [src]="img2" alt="Member 2" class="circular-image"></th>
+    </tr>
+    <tr>
+      <th class="thet" ><p>{{Name1 }} - {{ ID1 }}</p></th>
+      <th class="thet"><p>{{ Name2 }} - {{ ID2 }}</p></th>
+    </tr>
+  </table>
+
+</div>

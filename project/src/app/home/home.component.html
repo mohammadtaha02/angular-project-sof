@@ -1,0 +1,25 @@
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+<div class="container">
+  <h2>Popular Movies</h2>
+  <div class="social-links-general">
+    <a href="https://www.facebook.com/?locale=he_IL" class="social-link" target="_blank" title="Facebook">
+      <i class="fab fa-facebook"></i>
+    </a>
+    <a href="https://twitter.com/" class="social-link" target="_blank" title="Twitter">
+      <i class="fab fa-twitter"></i>
+    </a>
+  </div>
+  <div class="row">
+    <div *ngFor="let movie of Movies" class="col-md-4 mb-3">
+      <div class="card">
+        <img *ngIf="movie.img" [src]="movie.img" class="card-img-top" alt="{{ movie.title }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ movie.title }}</h5>
+          <p class="card-text">{{ movie.getDetails() }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
