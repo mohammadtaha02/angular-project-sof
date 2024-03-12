@@ -1,84 +1,65 @@
-import { Component, Input } from '@angular/core';
-import { Movie } from '../home/home.component';
+import { Component, Input ,Injector} from '@angular/core';
+import { Movie } from '../movie';
+import { MoviesService } from '../services/movies.service';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
- 
+
 export class ProductsComponent {
-  allProducts: Movie[] = [
-    new Movie('fast and and the Furious 1', 'Rob Cohen', 2001, ['Action'],'assets/fast1.jpg'),
-    new Movie('Tiger 3', 'Maneesh Sharma', 2023, ['Action', 'Adventure','Thriller'],'assets/tiger3.png'),
-    new Movie('Oppenheimer', 'Christopher Nolan', 2023, ['Biography', 'Drama','History'],'assets/oppenheimer.jpg'),
-    new Movie('Znachor', 'Michal Gazda', 2023, ['Drama', 'Romance'],'assets/znachor.jpg'),
-    new Movie('The Family Plan', 'Simon Cellan Jones', 2023, ['Action', 'Comedy'],'assets/family.jpg'),
-  ]
+  private moviesService: MoviesService;
 
-  Adventures: Movie[] = [
-    new Movie('Tiger 3', 'Maneesh Sharma', 2023, ['Action', 'Adventure','Thriller'],'assets/tiger3.png')
-  ]
-  
-  Actions: Movie[] = [
-    new Movie('fast and and the Furious 1', 'Rob Cohen', 2001, ['Action'],'assets/fast1.jpg'),
-    new Movie('Tiger 3', 'Maneesh Sharma', 2023, ['Action', 'Adventure','Thriller'],'assets/tiger3.png'),
-    new Movie('The Family Plan', 'Simon Cellan Jones', 2023, ['Action', 'Comedy'],'assets/family.jpg')
-  ]
-
-  Biographys: Movie[] = [
-    new Movie('Oppenheimer', 'Christopher Nolan', 2023, ['Biography', 'Drama','History'],'assets/oppenheimer.jpg')
-  ]
-
-  Comdies: Movie[] = [
-    new Movie('The Family Plan', 'Simon Cellan Jones', 2023, ['Action', 'Comedy'],'assets/family.jpg')
-  ]
-
-  Dramas: Movie[] = [
-    new Movie('Znachor', 'Michal Gazda', 2023, ['Drama', 'Romance'],'assets/znachor.jpg'),
-    new Movie('Oppenheimer', 'Christopher Nolan', 2023, ['Biography', 'Drama','History'],'assets/oppenheimer.jpg')
-  ]
-
-  Histories: Movie[] = [
-    new Movie('Oppenheimer', 'Christopher Nolan', 2023, ['Biography', 'Drama','History'],'assets/oppenheimer.jpg')
-  ]
-
-  Thrillers: Movie[] = [
-    new Movie('Tiger 3', 'Maneesh Sharma', 2023, ['Action', 'Adventure','Thriller'],'assets/tiger3.png')
-  ]
-
-  Romances: Movie[] = [
-    new Movie('Znachor', 'Michal Gazda', 2023, ['Drama', 'Romance'],'assets/znachor.jpg')
-  ]
-
-  toShow: Movie[] = [];
-  @Input() set categoryToShow(category: string){
-    if(category == 'ALL'){
-      this.toShow = this.allProducts;
-    }
-    if(category == 'Adventure'){
-      this.toShow = this.Adventures;
-    }
-    if(category == 'Action'){
-      this.toShow = this.Actions;
-    }
-    if(category == 'Biography'){
-      this.toShow = this.Biographys;
-    }
-    if(category == 'Comedy'){
-      this.toShow = this.Comdies;
-    }
-    if(category == 'Drama'){
-      this.toShow = this.Dramas;
-    }
-    if(category == 'History'){
-      this.toShow = this.Histories;
-    }
-    if(category == 'Thriller'){
-      this.toShow = this.Thrillers;
-    }
-    if(category == 'Romance'){
-      this.toShow = this.Romances;
-    }
+  constructor(private injector: Injector) {
+    this.moviesService = this.injector.get(MoviesService);
   }
+
+  allProducts: Movie[] = [];
+  Adventures: Movie[] = [];
+  Actions: Movie[] = [];
+  Biographys: Movie[] = [];
+  Comdies: Movie[] = [];
+  Dramas: Movie[] = [];
+  Histories: Movie[] = [];
+  Thrillers: Movie[] = [];
+  Romances: Movie[] = [];
+  toShow: Movie[] = [];
+  
+  @Input() set categoryToShow(category: string) {
+    switch (category) {
+      case 'ALL':
+        this.toShow = this.moviesService.getCategoryToShow('ALL');
+        break;
+      case 'Adventure':
+        this.toShow = this.moviesService.getCategoryToShow('Adventure');
+        break;
+      case 'Action':
+        this.toShow = this.moviesService.getCategoryToShow('Action');
+        break;
+      case 'Biography':
+        this.toShow = this.moviesService.getCategoryToShow('Biography');
+        break;
+      case 'Comedy':
+        this.toShow = this.moviesService.getCategoryToShow('Comedy');
+        break;
+      case 'Drama':
+        this.toShow = this.moviesService.getCategoryToShow('Drama');
+        break;
+      case 'History':
+        this.toShow = this.moviesService.getCategoryToShow('History');
+        break;
+      case 'Thriller':
+        this.toShow = this.moviesService.getCategoryToShow('Thriller');
+        break;
+      case 'Romance':
+        this.toShow = this.moviesService.getCategoryToShow('Romance');
+        break;
+      default:
+        this.toShow = [];
+        break;
+    }
+  }  
 }
+  
+

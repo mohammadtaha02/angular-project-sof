@@ -12,12 +12,12 @@
     </a>
   </div>
   <div class="row">
-    <div *ngFor="let movie of Movies" class="col-md-4 mb-3">
+    <div *ngFor="let movie of movie" class="col-md-4 mb-3">
       <div class="card">
         <img *ngIf="movie.img" [src]="movie.img" class="card-img-top" alt="{{ movie.title }}">
         <div class="card-body">
           <h5 class="card-title">{{ movie.title }}</h5>
-          <p class="card-text">{{ movie.getDetails() }}</p>
+          <p class="card-text">{{ movie.toString() }}</p>
         </div>
       </div>
     </div>

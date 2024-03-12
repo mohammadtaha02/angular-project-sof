@@ -10,12 +10,14 @@ import { HomeComponent } from './home/home.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ProductsComponent } from './products/products.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'catalog', component: CatalogComponent },
-  { path: '', redirectTo: '/about', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
@@ -28,6 +30,7 @@ const routes: Routes = [
     CatalogComponent,
     SidebarComponent,
     ProductsComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

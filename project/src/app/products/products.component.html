@@ -1,17 +1,17 @@
-<div class="row">
-<div *ngFor="let movie of toShow" class="col-md-3">
-  <div class="card"  style="width: 18rem;">
-    <div class="card-header">
-      <h3 class="mb-0">Movies</h3>
-    </div>
-    <div class="card-body">
+<div class="row" style="margin-left: -15px;">
+  <div *ngFor="let movie of toShow" class="col-md-3">
+    <div class="card" style="width: 15rem; height: 30rem;">
+      <div class="card-header">
+        <h3 class="mb-0">Movies</h3>
+      </div>
+      <div class="card-body">
         <img [src]="movie.img" class="card-img-top product-image" alt="{{ movie.title }}">
         <div class="card-body product-details">
           <h5 class="card-title product-name">{{ movie.title }}</h5>
-          <p>{{ movie.getDetails() }}</p>
+          <p>{{ movie.toString() }}</p>
+          <button class="btn btn-primary">Add to Cart</button>
         </div>
       </div>
     </div>
   </div>
 </div>
-  
