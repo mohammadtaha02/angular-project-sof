@@ -14,13 +14,35 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
+import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'catalog', component: CatalogComponent },
-  { path: 'login', component: LoginComponent },
-  {path: 'profile/:mail', component: UserDetailsComponent},
+  { path: 'profile', component: ProfileComponent,
+  children:[
+    {
+      path:'',
+      pathMatch:'full',
+      redirectTo:'login'
+    },
+    {
+      path:'login',
+      component: LoginComponent
+    },
+    {
+      path:'register',
+      component: RegisterComponent
+    },
+    {
+      path: 'user', 
+      component: UserDetailsComponent
+    },
+
+  ]},
+  {path: 'register', component: RegisterComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
 ];
@@ -38,6 +60,8 @@ const routes: Routes = [
     NotFoundComponent,
     LoginComponent,
     UserDetailsComponent,
+    RegisterComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

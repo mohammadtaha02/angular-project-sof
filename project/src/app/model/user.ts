@@ -9,7 +9,7 @@ export class User{
         this.password = password
         this.name = name
         this.male = male
-        if(male){
+        if(this.male){
             this.image = 'https://clipart-library.com/2023/male-clipart-md.png'
         }
         else{

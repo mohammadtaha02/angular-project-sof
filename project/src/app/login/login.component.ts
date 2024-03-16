@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit{
   loginForm !: FormGroup
-  constructor(private userService: UsersService, private formbuilder: FormBuilder, private router: Router){
+  constructor(private userService: UsersService, private formbuilder: FormBuilder, 
+    private router: Router){
     this.loginForm = this.formbuilder.group({
       email: new FormControl('',[Validators.email,Validators.required]),
       password: new FormControl('',[Validators.required])
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit{
     let password = this.loginForm.value.password
     for(let user of users){
       if(user.getEmail()==mail && user.getPassword()==password){
-          this.router.navigate(['profile', mail])
+        sessionStorage.setItem('user',mail)
+        this.router.navigateByUrl('profile/user')
         return
       }
     }

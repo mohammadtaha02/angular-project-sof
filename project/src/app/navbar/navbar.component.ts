@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,10 +6,24 @@ import { Router } from '@angular/router';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
-  constructor(private router: Router) {}
+export class NavbarComponent implements OnInit{
+  loggedIn : boolean = false
+  constructor(private router: Router){}
+  ngOnInit(): void {
+    this.router.events.subscribe((val:any)=>{
+      if(val.url){
+        if(sessionStorage.getItem('user')){
+          this.loggedIn = true
+        }
+      }
+    })
+   }
 
   openHome() {
     this.router.navigate(['/home']);
+    }
+    logout(){
+      this.loggedIn = false
+      sessionStorage.removeItem('user')
     }
 }

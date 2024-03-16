@@ -1,9 +1,23 @@
 <nav>
-    <ul>
-      <li><a routerLink="/home">Home</a></li>
-      <li><a routerLink="/catalog">Catalog</a></li>
-      <li><a routerLink="/Cart">Cart</a></li>
-      <li><a routerLink="/about">About Us</a></li>
-      <li><a routerLink="/login">Login</a></li>
+    <ul class="hide">
+      <li><a class="normal" routerLink="/home" routerLinkActive="active">Home</a></li>
+      <li><a class="normal" routerLink="/catalog">Catalog</a></li>
+      <li><a class="normal" routerLink="/Cart">Cart</a></li>
+      <li><a class="normal" routerLink="/about">About Us</a></li>
+      <div *ngIf="!loggedIn; then login else profile"></div>
+      <ng-template #login>
+        <li><a routerLink="profile" class="normal">Login</a></li>
+      </ng-template>
+      <ng-template #profile>
+        <li class="dropdown" ngbDropdown>
+          <a class="dropdown-toggle normal" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            profile
+          </a>
+          <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="dropdownMenuButton">
+            <li class="dropdown-item"><a [routerLink]="['/profile/user']" class="dropdown-item dropdownStyle">user details</a></li>
+            <li class="dropdown-item"><button class="btn btn-link dropdownStyle" (click)="logout()">logout</button></li>
+          </ul>
+        </li>
+      </ng-template>
     </ul>
 </nav>

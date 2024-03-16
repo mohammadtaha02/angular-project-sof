@@ -10,13 +10,18 @@ import { UsersService } from '../services/users.service';
 export class UserDetailsComponent {
   image : string = ''
   name : string = ''
-  email :string = ''
-  constructor(private actRoute : ActivatedRoute, private userService: UsersService){
-    this.email = this.actRoute.snapshot.params['mail']
-    let user = this.userService.getUser(this.email)
-    if(user!=null){
-      this.image = user.getImage()
-      this.name = user.getName()
+  email !:any
+  constructor(private userService: UsersService){
+    this.email = sessionStorage.getItem('user')
+    if(this.email != null){
+      let user = this.userService.getUser(this.email)
+      if(user!=null){
+        this.image = user.getImage()
+        this.name = user.getName()
+      }
+    }
+    else{
+      this.email = ''
     }
   }
 }

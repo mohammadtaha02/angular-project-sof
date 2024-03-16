@@ -20,4 +20,15 @@ export class UsersService {
     }
     return null
   }
+  addUser(mail:string, name:string,pass:string, gender:string){
+    let male = true;
+    if(gender != "male") male = false
+    let userExists = this.getUser(mail)
+    if(!userExists){
+      let user = new User(mail,name,pass,male)
+      this.users.push(user)
+      return true
+    }
+    return false
+  }
 }
