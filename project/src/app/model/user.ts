@@ -4,7 +4,8 @@ export class User{
     private name : string
     private male : boolean
     private image : string
-    constructor(email:string, password:string, name : string, male : boolean){
+    private birthDate : Date
+    constructor(email:string, password:string, name : string, male : boolean, birthDate : Date){
         this.email = email
         this.password = password
         this.name = name
@@ -15,6 +16,7 @@ export class User{
         else{
             this.image = 'https://clipart-library.com/2023/350-3508951_big-image-faceless-woman-clipart.png'
         }
+        this.birthDate = birthDate
     }
     getEmail(){
         return this.email
@@ -39,5 +41,17 @@ export class User{
     }
     setImage(image:string){
         this.image = image
+    }
+    getMale(){
+        return this.male
+    }
+    setMale(male:boolean){
+        this.male = male
+    }
+    getBirthDate(){
+        return this.birthDate
+    }
+    setBirthDate(birthDate: Date){
+        this.birthDate = birthDate
     }
 }

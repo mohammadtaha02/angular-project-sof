@@ -11,6 +11,10 @@ export class UserDetailsComponent {
   image : string = ''
   name : string = ''
   email !:any
+  male !: boolean
+  maleInfo !: string
+  birthDate !: Date
+  birthDateInfo !: string
   constructor(private userService: UsersService){
     this.email = sessionStorage.getItem('user')
     if(this.email != null){
@@ -18,6 +22,15 @@ export class UserDetailsComponent {
       if(user!=null){
         this.image = user.getImage()
         this.name = user.getName()
+        this.email = user.getEmail()
+        this.male = user.getMale()
+        if(this.male)this.maleInfo = 'Male'
+        else this.maleInfo = 'Female'
+        this.birthDate = user.getBirthDate()
+        const day = this.birthDate.getDate()
+        const month = this.birthDate.getMonth()
+        const year = this.birthDate.getFullYear()
+        this.birthDateInfo = `${day}/${month}/${year}`
       }
     }
     else{

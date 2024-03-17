@@ -18,6 +18,7 @@ export class RegisterComponent {
       password: ['', Validators.required],
       passwordValidation: ['', Validators.required],
       gender: ['', Validators.required],
+      birthdate: ['', Validators.required]
     })
   }
   register(){
@@ -25,7 +26,13 @@ export class RegisterComponent {
     let name = this.registerForm.value.name
     let password = this.registerForm.value.password
     let gender = this.registerForm.value.gender
-    let res = this.userService.addUser(mail,name,password,gender)
+    let birthDate = this.registerForm.value.birthDate
+    const day = birthDate.getDate()
+    const month = birthDate.getMonth()
+    const year = birthDate.getFullYear()
+    birthDate = `${day}/${month}/${year}`
+    let res = this.userService.addUser(mail,name,password,gender,birthDate)
+    this.router.navigateByUrl('profile/login')
     if(!res) alert("EMAIL ADDRESS ALREADY EXISTS")
   }
 }
