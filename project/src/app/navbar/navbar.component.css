@@ -28,8 +28,16 @@ nav {
     padding: 14px 16px;
     text-decoration: none;
   }
-  a.normal:hover {
+  .normal:hover {
     background-color: #ddd;
     color: black;
     border-radius: 5px;
+  }
+  .notNormal{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px 14px;
+    text-decoration: none;
+    cursor: pointer;
   }

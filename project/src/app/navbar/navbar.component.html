@@ -10,8 +10,8 @@
       </ng-template>
       <ng-template #profile>
         <li class="dropdown" ngbDropdown>
-          <a class="dropdown-toggle normal" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            profile
+          <a class="dropdown-toggle notNormal" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img [src]="user.getImage()" style="width: 35px; height: 35px; border-radius: 50px ;" alt="User Image">
           </a>
           <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="dropdownMenuButton">
             <li class="dropdown-item"><a [routerLink]="['/profile/user']" class="dropdown-item dropdownStyle">user details</a></li>

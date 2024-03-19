@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UsersService } from '../services/users.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,13 +9,19 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit{
   loggedIn : boolean = false
-  constructor(private router: Router){}
+  user !: any;
+  constructor(private router: Router, private userService : UsersService){}
   ngOnInit(): void {
     this.router.events.subscribe((val:any)=>{
       if(val.url){
-        if(sessionStorage.getItem('user')){
-          this.loggedIn = true
+        if (sessionStorage.getItem('user')) {
+          const userEmail = sessionStorage.getItem('user');
+          if (userEmail) {
+            this.user = this.userService.getUser(userEmail);
+            this.loggedIn = true;
+          }
         }
+        
       }
     })
    }

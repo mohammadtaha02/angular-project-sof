@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../model/user';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,27 @@ export class UsersService {
     new User('mohammad@gmail.com','1234','mohammad',true, new Date(2002, 9, 12)),
     new User('adn@gmail.com','lad123','adn',false, new Date(1990, 5, 15))
   ]
-  constructor() { }
+  baseUrl : string = 'http://localhost:3000/users'
+  headers = {'content-type':'application/json'}
+
+  constructor(private http:HttpClient) {
+    /*this.refreshUsers()*/
+   }
+
+
+   /*getUsers2() : Observable<User>{
+    return this.http.get(this.baseUrl)
+  }
+  
+  refreshUsers(){
+    this.getUsers2().subscribe(
+      (data: User)=>{
+        this.users = data
+      }
+    )
+  }*/
+
+  
   getUsers(){
     return this.users
   }
@@ -31,4 +53,5 @@ export class UsersService {
     }
     return false
   }
+
 }

@@ -1,0 +1,20 @@
+{
+    "users":
+    [
+        {
+            "email" : "mohammad@gmail.com",
+            "password" : "1234",
+            "name" : "mohammad",
+            "male" : "true",
+            "birthDate" : "2002, 9, 12"
+        },
+        {
+            "email" : "adn@gmail.com",
+            "password" : "lad123",
+            "name" : "adn",
+            "male" : "false",
+            "birthDate" : "1990, 5, 15"
+        }
+    ]
+
+}

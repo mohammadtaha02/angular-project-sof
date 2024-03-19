@@ -14,7 +14,7 @@ export class RegisterComponent {
     private router: Router){
     this.registerForm = this.formbuilder.group({
       name : ['', Validators.required],
-      email: ['', Validators.compose([Validators.email, Validators.required])],
+      email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]],
       password: ['', Validators.required],
       passwordValidation: ['', Validators.required],
       gender: ['', Validators.required],
@@ -26,11 +26,7 @@ export class RegisterComponent {
     let name = this.registerForm.value.name
     let password = this.registerForm.value.password
     let gender = this.registerForm.value.gender
-    let birthDate = this.registerForm.value.birthDate
-    const day = birthDate.getDate()
-    const month = birthDate.getMonth()
-    const year = birthDate.getFullYear()
-    birthDate = `${day}/${month}/${year}`
+    let birthDate = this.registerForm.value.birthdate
     let res = this.userService.addUser(mail,name,password,gender,birthDate)
     this.router.navigateByUrl('profile/login')
     if(!res) alert("EMAIL ADDRESS ALREADY EXISTS")

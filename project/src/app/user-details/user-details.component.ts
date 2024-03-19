@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { User } from '../model/user';
 import { UsersService } from '../services/users.service';
 
 @Component({
@@ -24,13 +25,8 @@ export class UserDetailsComponent {
         this.name = user.getName()
         this.email = user.getEmail()
         this.male = user.getMale()
-        if(this.male)this.maleInfo = 'Male'
-        else this.maleInfo = 'Female'
+        this.maleInfo = this.male ? 'Male' : 'Female';
         this.birthDate = user.getBirthDate()
-        const day = this.birthDate.getDate()
-        const month = this.birthDate.getMonth()
-        const year = this.birthDate.getFullYear()
-        this.birthDateInfo = `${day}/${month}/${year}`
       }
     }
     else{

@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit{
   constructor(private userService: UsersService, private formbuilder: FormBuilder, 
     private router: Router){
     this.loginForm = this.formbuilder.group({
-      email: new FormControl('',[Validators.email,Validators.required]),
+      email: new FormControl('',[Validators.email,Validators.required,Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]),
       password: new FormControl('',[Validators.required])
     })
   }

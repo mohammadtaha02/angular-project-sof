@@ -37,8 +37,9 @@
                 <input type="password" class="form-control" placeholder="Enter password" 
                 formControlName="passwordValidation">
                 <div *ngIf="!registerForm.controls['passwordValidation']?.valid && 
-                (registerForm.controls['password']?.dirty || registerForm.controls['password']?.touched)" 
-                style="color:red">
+                    (registerForm.controls['passwordValidation']?.dirty || registerForm.controls['passwordValidation']?.touched) || 
+                    registerForm.value.password !== registerForm.value.passwordValidation" 
+                    style="color:red">
                     No match passwords
                 </div>
             </div>
