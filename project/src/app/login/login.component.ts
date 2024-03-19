@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../services/users.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-login',
@@ -20,16 +21,23 @@ export class LoginComponent implements OnInit{
   ngOnInit(): void {
   }
   login(){
-    let users = this.userService.getUsers()
-    let mail = this.loginForm.value.email
-    let password = this.loginForm.value.password
-    for(let user of users){
-      if(user.getEmail()==mail && user.getPassword()==password){
-        sessionStorage.setItem('user',mail)
-        this.router.navigateByUrl('profile/user')
-        return
+    this.userService.getUsers().subscribe(
+      (users: User[]) =>{
+      let mail = this.loginForm.value.email
+      let password = this.loginForm.value.password
+      for(let user of users){
+        if(user.getEmail()==mail && user.getPassword()==password){
+          sessionStorage.setItem('user',mail)
+          this.router.navigateByUrl('profile/user')
+          return
+        }
       }
-    }
+      alert('Invalid email or password');
+    },
+    (error) => {
+      console.error('Error fetching users:', error);
+    })
+    
     
   }
 }

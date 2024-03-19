@@ -1,20 +1,36 @@
 {
-    "users":
-    [
-        {
-            "email" : "mohammad@gmail.com",
-            "password" : "1234",
-            "name" : "mohammad",
-            "male" : "true",
-            "birthDate" : "2002, 9, 12"
-        },
-        {
-            "email" : "adn@gmail.com",
-            "password" : "lad123",
-            "name" : "adn",
-            "male" : "false",
-            "birthDate" : "1990, 5, 15"
-        }
-    ]
-
+  "users": [
+    {
+      "email": "mohammad@gmail.com",
+      "password": "1234",
+      "name": "mohammad",
+      "male": "true",
+      "birthDate": "2002-9-12"
+    },
+    {
+      "email": "adn@gmail.com",
+      "password": "lad123",
+      "name": "adn",
+      "male": "false",
+      "birthDate": "1990-05-15"
+    },
+    {
+      "id": "24b8",
+      "email": "a@gmail.com",
+      "password": "a",
+      "name": "a",
+      "male": "male",
+      "image": "https://clipart-library.com/2023/male-clipart-md.png",
+      "birthDate": "2024-03-21"
+    },
+    {
+      "id": "febe",
+      "email": "a",
+      "password": "a@gmail.com",
+      "name": "a",
+      "male": true,
+      "image": "https://clipart-library.com/2023/male-clipart-md.png",
+      "birthDate": "2024-03-19"
+    }
+  ]
 }

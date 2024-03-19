@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsersService } from '../services/users.service';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-navbar',
@@ -17,11 +18,15 @@ export class NavbarComponent implements OnInit{
         if (sessionStorage.getItem('user')) {
           const userEmail = sessionStorage.getItem('user');
           if (userEmail) {
-            this.user = this.userService.getUser(userEmail);
+            this.userService.getUsers().subscribe(
+              (data:User[])=>{
+                if(this.userService.exists(userEmail)){
+                  this.user = data
+                }
+              })
             this.loggedIn = true;
           }
         }
-        
       }
     })
    }

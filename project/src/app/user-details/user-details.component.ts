@@ -19,7 +19,7 @@ export class UserDetailsComponent {
   constructor(private userService: UsersService){
     this.email = sessionStorage.getItem('user')
     if(this.email != null){
-      let user = this.userService.getUser(this.email)
+      let user = this.userService.exists(this.email)
       if(user!=null){
         this.image = user.getImage()
         this.name = user.getName()
