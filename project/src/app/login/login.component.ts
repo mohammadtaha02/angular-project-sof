@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../services/users.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from '../model/user';
 
 @Component({
   selector: 'app-login',
@@ -20,24 +19,18 @@ export class LoginComponent implements OnInit{
   }
   ngOnInit(): void {
   }
-  login(){
-    this.userService.getUsers().subscribe(
-      (users: User[]) =>{
-      let mail = this.loginForm.value.email
-      let password = this.loginForm.value.password
-      for(let user of users){
-        if(user.getEmail()==mail && user.getPassword()==password){
-          sessionStorage.setItem('user',mail)
-          this.router.navigateByUrl('profile/user')
-          return
-        }
+  onSubmit(){
+    if(this.loginForm.valid){
+      const mail = this.loginForm.value.email
+      const password = this.loginForm.value.password
+      const user = this.userService.exists(mail)
+      if(user != null && user.password == password){
+        this.userService.login(mail,password)
+        this.router.navigateByUrl('profile/user')
       }
-      alert('Invalid email or password');
-    },
-    (error) => {
-      console.error('Error fetching users:', error);
-    })
-    
-    
+      else{
+        alert('Invalid Email Addres Or Password')
+      }
+    }
   }
 }

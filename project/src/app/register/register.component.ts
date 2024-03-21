@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from '../services/users.service';
-import { User } from '../model/user';
 
 @Component({
   selector: 'app-register',
@@ -25,14 +24,13 @@ export class RegisterComponent {
 
   onSubmit() {
     if (this.registerForm.valid) {
-      const user = new User(
-        this.registerForm.value.name,
-        this.registerForm.value.email,
-        this.registerForm.value.password,
-        this.registerForm.value.gender === 'male',
-        this.registerForm.value.birthdate
-      )
-      this.userService.register(user)
+      const mail = this.registerForm.value.email
+      const password = this.registerForm.value.password
+      const name = this.registerForm.value.name
+      const gender = this.registerForm.value.gender === 'male'
+      const birthdate = this.registerForm.value.birthdate
+      this.userService.register( mail, password,name , gender, birthdate)
+      this.router.navigateByUrl('profile/login')
     } else {
       alert('Please fill out all the required fields correctly.')
     }

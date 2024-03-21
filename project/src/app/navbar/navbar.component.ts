@@ -15,16 +15,13 @@ export class NavbarComponent implements OnInit{
   ngOnInit(): void {
     this.router.events.subscribe((val:any)=>{
       if(val.url){
-        if (sessionStorage.getItem('user')) {
-          const userEmail = sessionStorage.getItem('user');
+        if (sessionStorage.getItem('currentUser')) {
+          const userEmail = sessionStorage.getItem('currentUser');
           if (userEmail) {
-            this.userService.getUsers().subscribe(
-              (data:User[])=>{
-                if(this.userService.exists(userEmail)){
-                  this.user = data
-                }
-              })
-            this.loggedIn = true;
+            this.user = this.userService.exists(userEmail);
+            if(this.user!=null){
+              this.loggedIn = true;
+            }
           }
         }
       }
@@ -36,7 +33,7 @@ export class NavbarComponent implements OnInit{
     }
     logout(){
       this.loggedIn = false
-      sessionStorage.removeItem('user')
+      sessionStorage.removeItem('currentUser')
       this.router.navigateByUrl('profile/login')
     }
 }

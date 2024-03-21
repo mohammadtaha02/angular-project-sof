@@ -20,13 +20,7 @@ export class UsersService {
    getUsers() : Observable<User[]>{
     return this.http.get<User[]>(this.baseUrl)
   }
-  
-  addUser(user:User){
-    let body = JSON.stringify(user)
-    return this.http.post(this.baseUrl, body, {
-      headers: this.headers
-    })
-  }
+
 
   refreshUsers(){
     this.getUsers().subscribe(
@@ -36,19 +30,36 @@ export class UsersService {
     )
   }
 
-  register(user : User){
-    this.addUser(user).subscribe(
-      () => {
-        this.router.navigateByUrl('profile/login');
-      }
-    )
+  addUser(user : User){
+    let body = JSON.stringify(user)
+    return this.http.post<User[]>(this.baseUrl, body, {
+      headers: this.headers
+    })
   }
+
   exists(email:string){
     for(let user of this.users){
-      if(user.getEmail()==email)
+      if(user.email==email)
         return user
     }
     return null
+  }
+
+  register(email:string, password:string, name : string, male : boolean, birthDate : Date){
+    let user = new User(email,password,name,male,birthDate)
+    this.addUser(user).subscribe((data) =>{
+      this.refreshUsers()
+    }
+    )
+  }
+
+  login(email:string, password:string){
+    for(let user of this.users){
+      if(user.email == email && user.password == password){
+        sessionStorage.setItem('currentUser', email)
+        break
+      }
+    }
   }
 
 }
