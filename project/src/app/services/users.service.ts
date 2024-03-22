@@ -31,7 +31,15 @@ export class UsersService {
   }
 
   addUser(user : User){
-    let body = JSON.stringify(user)
+    const newUser = {
+      email: user.email,
+      password: user.password,
+      name: user.name,
+      male: user.male,
+      image: user.image,
+      birthDate: user.birthDate
+    };
+    let body = JSON.stringify(newUser)
     return this.http.post<User[]>(this.baseUrl, body, {
       headers: this.headers
     })

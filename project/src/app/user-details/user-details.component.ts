@@ -13,7 +13,6 @@ export class UserDetailsComponent {
   male !: boolean
   maleInfo !: string
   birthDate !: Date
-  birthDateInfo !: string
   constructor(private userService: UsersService){
     this.email = sessionStorage.getItem('currentUser')
     if(this.email != null){
