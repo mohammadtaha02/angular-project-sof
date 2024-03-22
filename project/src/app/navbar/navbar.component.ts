@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsersService } from '../services/users.service';
-import { User } from '../model/user';
 
 @Component({
   selector: 'app-navbar',
@@ -31,9 +30,8 @@ export class NavbarComponent implements OnInit{
   openHome() {
     this.router.navigate(['/home']);
     }
-    logout(){
+    onSubmit(){
       this.loggedIn = false
-      sessionStorage.removeItem('currentUser')
-      this.router.navigateByUrl('profile/login')
+      this.userService.logout()
     }
 }

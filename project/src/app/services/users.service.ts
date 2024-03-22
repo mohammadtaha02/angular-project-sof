@@ -70,4 +70,9 @@ export class UsersService {
     }
   }
 
+  logout(){
+    sessionStorage.removeItem('currentUser')
+    this.router.navigateByUrl('profile/login')
+  }
+
 }

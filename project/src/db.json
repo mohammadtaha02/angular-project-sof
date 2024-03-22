@@ -35,6 +35,15 @@
       "male": true,
       "image": "https://clipart-library.com/2023/male-clipart-md.png",
       "birthDate": "2024-02-29"
+    },
+    {
+      "id": "7981",
+      "email": "lyo@gmail.com",
+      "password": "lyo",
+      "name": "lyo",
+      "male": true,
+      "image": "https://clipart-library.com/2023/male-clipart-md.png",
+      "birthDate": "2024-03-07"
     }
   ]
 }
