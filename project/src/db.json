@@ -44,6 +44,15 @@
       "male": true,
       "image": "https://clipart-library.com/2023/male-clipart-md.png",
       "birthDate": "2024-03-07"
+    },
+    {
+      "id": "e275",
+      "email": "t@gmail.com",
+      "password": "123",
+      "name": "t",
+      "male": true,
+      "image": "https://clipart-library.com/2023/male-clipart-md.png",
+      "birthDate": "2024-04-12"
     }
   ]
 }
