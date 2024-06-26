@@ -17,6 +17,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SubscribeComponent } from './subscribe/subscribe.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -44,6 +45,7 @@ const routes: Routes = [
 
   ]},
   {path: 'register', component: RegisterComponent},
+  {path: 'subscribe', component: SubscribeComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
 ];
@@ -63,6 +65,7 @@ const routes: Routes = [
     UserDetailsComponent,
     RegisterComponent,
     ProfileComponent,
+    SubscribeComponent,
   ],
   imports: [
     BrowserModule,
