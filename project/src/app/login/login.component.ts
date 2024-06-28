@@ -19,18 +19,18 @@ export class LoginComponent implements OnInit{
   }
   ngOnInit(): void {
   }
-  onSubmit(){
-    if(this.loginForm.valid){
-      const mail = this.loginForm.value.email
-      const password = this.loginForm.value.password
-      const user = this.userService.exists(mail)
-      if(user != null && user.password == password){
-        this.userService.login(mail,password)
-        this.router.navigateByUrl('profile/user')
-      }
-      else{
-        alert('Invalid Email Addres Or Password')
-      }
+  onSubmit() {
+    if (this.loginForm.valid) {
+      const mail = this.loginForm.value.email;
+      const password = this.loginForm.value.password;
+      this.userService.exists(mail).subscribe(user => {
+        if (user != null && user.password == password) {
+          this.userService.login(mail, password);
+          this.router.navigateByUrl('profile/user');
+        } else {
+          alert('Invalid Email Address Or Password');
+        }
+      });
     }
   }
 }
