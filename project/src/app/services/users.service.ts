@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../model/user';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 })
 export class UsersService {
   users : User[] =[]
-  baseUrl : string = 'http://localhost:3000/users'
-  headers = {'content-type':'application/json'}
+  baseUrl : string = 'http://localhost/backend'
+  headers = new HttpHeaders({ 'Content-Type': 'application/json' })
 
   constructor(private http:HttpClient,private router: Router) {
     this.refreshUsers()
@@ -18,7 +18,7 @@ export class UsersService {
 
 
    getUsers() : Observable<User[]>{
-    return this.http.get<User[]>(this.baseUrl)
+    return this.http.get<User[]>(`${this.baseUrl}/getUsers.php`)
   }
 
 
@@ -30,19 +30,8 @@ export class UsersService {
     )
   }
 
-  addUser(user : User){
-    const newUser = {
-      email: user.email,
-      password: user.password,
-      name: user.name,
-      male: user.male,
-      image: user.image,
-      birthDate: user.birthDate
-    };
-    let body = JSON.stringify(newUser)
-    return this.http.post<User[]>(this.baseUrl, body, {
-      headers: this.headers
-    })
+  addUser(user: User) {
+    return this.http.post<User[]>(`${this.baseUrl}/addUser.php`, JSON.stringify(user), { headers: this.headers });
   }
 
   exists(email:string){
