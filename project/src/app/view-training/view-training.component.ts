@@ -1,0 +1,10 @@
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-view-training',
+  templateUrl: './view-training.component.html',
+  styleUrls: ['./view-training.component.css']
+})
+export class ViewTrainingComponent {
+
+}

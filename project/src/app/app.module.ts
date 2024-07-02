@@ -18,6 +18,11 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SubscribeComponent } from './subscribe/subscribe.component';
+import { AddTrainingComponent } from './add-training/add-training.component';
+import { UpdateTrainingComponent } from './update-training/update-training.component';
+import { ViewTrainingComponent } from './view-training/view-training.component';
+import { SearchTrainingComponent } from './search-training/search-training.component';
+import { FilterTrainingComponent } from './filter-training/filter-training.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -44,8 +49,13 @@ const routes: Routes = [
     },
 
   ]},
-  {path: 'register', component: RegisterComponent},
-  {path: 'subscribe', component: SubscribeComponent},
+  { path: 'register', component: RegisterComponent},
+  { path: 'subscribe', component: SubscribeComponent},
+  { path: 'add-training', component: AddTrainingComponent },
+  { path: 'update-training', component: UpdateTrainingComponent },
+  { path: 'view-trainings', component: ViewTrainingComponent },
+  { path: 'search-training', component: SearchTrainingComponent },
+  { path: 'filter-training', component: FilterTrainingComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
 ];
@@ -66,6 +76,11 @@ const routes: Routes = [
     RegisterComponent,
     ProfileComponent,
     SubscribeComponent,
+    AddTrainingComponent,
+    UpdateTrainingComponent,
+    ViewTrainingComponent,
+    SearchTrainingComponent,
+    FilterTrainingComponent,
   ],
   imports: [
     BrowserModule,
