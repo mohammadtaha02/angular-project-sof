@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class UsersService {
   users: User[] = [];
-  baseUrl: string = 'http://localhost/backend';
+  baseUrl: string = 'http://localhost/backend/php/user';
   headers = { 'content-type': 'application/json' };
 
   constructor(private http: HttpClient, private router: Router) {
