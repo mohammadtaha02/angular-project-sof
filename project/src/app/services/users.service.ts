@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { User } from '../model/user';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -29,25 +30,32 @@ export class UsersService {
   }
 
   addUser(user: User) {
-    const newUser = {
-      email: user.email,
-      password: user.password,
-      name: user.name,
-      male: user.male,
-      image: user.image,
-      birthDate: user.birthDate
-    };
-    let body = JSON.stringify(newUser);
+    let body = JSON.stringify(user);
     return this.http.post<User[]>(`${this.baseUrl}/addUser.php`, body, {
       headers: this.headers
     });
   }
 
-  exists(email: string): Observable<User | null> {
-    return this.http.post<User | null>(`${this.baseUrl}/checkUser.php`, { email }, {
-      headers: this.headers
-    });
+  exists(email: string, password?: string): Observable<User | null> {
+    const body = password ? { email: email, password: password } : { email: email };
+    return this.http.post<any>(`${this.baseUrl}/checkUser.php`, body, { headers: this.headers })
+      .pipe(
+        map(response => {
+          if (response && response.email) {
+            return new User(
+              response.email,
+              response.password,
+              response.name,
+              response.male,
+              new Date(response.birth_date)
+            );
+          }
+          return null;
+        }),
+        catchError(() => of(null))
+      );
   }
+
 
   register(email: string, password: string, name: string, male: boolean, birthDate: Date) {
     let user = new User(email, password, name, male, birthDate);

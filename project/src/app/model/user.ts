@@ -1,53 +1,65 @@
-export class User{
-    private _email : string
-    private _password : string
-    private _name : string
-    private _male : boolean
-    private _image : string
-    private _birthDate : Date
-    constructor(email:string, password:string, name : string, male : boolean, birthDate : Date){
-        this._email = email;
-        this._password = password;
-        this._name = name;
-        this._male = male;
-        this._image = male ? 'https://clipart-library.com/2023/male-clipart-md.png' : 'https://clipart-library.com/2023/350-3508951_big-image-faceless-woman-clipart.png';
-        this._birthDate = birthDate;
+export class User {
+    private email: string;
+    private password: string;
+    private name: string;
+    private male: boolean;
+    private image: string;
+    private birthDate: Date;
+
+    constructor(email: string, password: string, name: string, male: boolean, birthDate: Date) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.male = male;
+        this.image = male ? 'https://clipart-library.com/2023/male-clipart-md.png' : 'https://clipart-library.com/2023/350-3508951_big-image-faceless-woman-clipart.png';
+        this.birthDate = birthDate;
     }
-    get email(): string {
-        return this._email;
-      }
-    
-      set email(email: string) {
-        this._email = email;
-      }
-    get password() : string{
-        return this._password
+
+    getEmail(): string {
+        return this.email;
     }
-    set password(password:string){
-        this._password = password
+
+    setEmail(email: string) {
+        this.email = email;
     }
-    get name() : string{
-        return this._name
+
+    getPassword(): string {
+        return this.password;
     }
-    set name(name:string){
-        this._name = name
+
+    setPassword(password: string) {
+        this.password = password;
     }
-    get image() : string{
-        return this._image
+
+    getName(): string {
+        return this.name;
     }
-    set image(image:string){
-        this._image = image
+
+    setName(name: string) {
+        this.name = name;
     }
-    get male() : boolean{
-        return this._male
+
+    getImage(): string {
+        return this.image;
     }
-    set male(male:boolean){
-        this._male = male
+
+    setImage(image: string) {
+        this.image = image;
     }
-    get birthDate() : Date{
-        return this._birthDate
+
+    getMale(): boolean {
+        return this.male;
     }
-    set birthDate(birthDate: Date){
-        this._birthDate = birthDate
+
+    setMale(male: boolean) {
+        this.male = male;
+    }
+
+    getBirthDate(): Date {
+        return this.birthDate;
+    }
+
+    setBirthDate(birthDate: Date) {
+        this.birthDate = birthDate;
     }
 }

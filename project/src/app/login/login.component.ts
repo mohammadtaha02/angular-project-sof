@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit{
       const mail = this.loginForm.value.email;
       const password = this.loginForm.value.password;
       this.userService.exists(mail).subscribe(user => {
-        if (user != null && user.password == password) {
+        if (user != null && user.getPassword() == password) {
           this.userService.login(mail, password);
           this.router.navigateByUrl('profile/user');
         } else {

@@ -8,6 +8,28 @@ export class Training {
       this.name = name;
       this.description = description;
     }
-    
+    getEmail(): number {
+        return this.id;
+    }
+
+    setEmail(id: number) {
+        this.id = id;
+    }
+
+    getPassword(): string {
+        return this.name;
+    }
+
+    setPassword(name: string) {
+        this.name = name;
+    }
+
+    getName(): string {
+        return this.description;
+    }
+
+    setName(description: string) {
+        this.description = description;
+    }
   }
   
