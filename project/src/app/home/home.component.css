@@ -30,3 +30,18 @@
   .social-link:hover {
     color: #007bff; 
   }
+  .btn-custom {
+    background-color: #333;
+    color: white;
+    width: 100%;
+    text-align: right;
+  }
+  .btn-custom.collapsed {
+    background-color: #444;
+  }
+  .accordion-button::after {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="white"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');
+  }
+  .accordion-button:not(.collapsed)::after {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="white"><path fill-rule="evenodd" d="M1.646 11.354a.5.5 0 0 0 .708 0L8 5.707l5.646 5.647a.5.5 0 0 0 .708-.708l-6-6a.5.5 0 0 0-.708 0l-6 6a.5.5 0 0 0 0 .708z"/></svg>');
+  }

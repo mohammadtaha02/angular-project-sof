@@ -10,11 +10,14 @@ import { Observable } from 'rxjs';
 export class MoviesService {
   
   Movies: Movie[] = [
-    new Movie('fast and and the Furious 1', 'Rob Cohen', 2001, ['Action'],'assets/fast1.jpg'),
-    new Movie('Tiger 3', 'Maneesh Sharma', 2023, ['Action', 'Adventure','Thriller'],'assets/tiger3.png'),
-    new Movie('Oppenheimer', 'Christopher Nolan', 2023, ['Biography', 'Drama','History'],'assets/oppenheimer.jpg'),
-    new Movie('Znachor', 'Michal Gazda', 2023, ['Drama', 'Romance'],'assets/znachor.jpg'),
-    new Movie('The Family Plan', 'Simon Cellan Jones', 2023, ['Action', 'Comedy'],'assets/family.jpg'),
+    new Movie('back machine', 'assets/back machine.jpg'),
+    new Movie('biceps machine','assets/biceps machine.jpg'),
+    new Movie('legs machine','assets/leg machine.jpg'),
+    new Movie('legs machine', 'assets/leg machine2.jpg'),
+    new Movie('chests machine','assets/chest machine.png'),
+    new Movie('bicycle machine','assets/bicycle machine.jpeg'),
+    new Movie('running machine', 'assets/running machine.jpg'),
+    new Movie('stair machine', 'assets/stair machine.jpg'),
   ]
 
   getMovies(): Movie[] {
@@ -25,61 +28,54 @@ export class MoviesService {
     return this.Movies.slice(0, 3);
   }
 
-  Adventures: Movie[] = [
-    new Movie('Tiger 3', 'Maneesh Sharma', 2023, ['Action', 'Adventure','Thriller'],'assets/tiger3.png')
+  back: Movie[] = [
+    new Movie('back machine', 'assets/back machine.jpg'),
   ];
   
-  Actions: Movie[] = [
-    new Movie('fast and and the Furious 1', 'Rob Cohen', 2001, ['Action'],'assets/fast1.jpg'),
-    new Movie('Tiger 3', 'Maneesh Sharma', 2023, ['Action', 'Adventure','Thriller'],'assets/tiger3.png'),
-    new Movie('The Family Plan', 'Simon Cellan Jones', 2023, ['Action', 'Comedy'],'assets/family.jpg')
+  legs: Movie[] = [
+    new Movie('legs machine','assets/leg machine.jpg'),
+    new Movie('legs machine', 'assets/leg machine2.jpg'),
   ];
 
-  Biographys: Movie[] = [
-    new Movie('Oppenheimer', 'Christopher Nolan', 2023, ['Biography', 'Drama','History'],'assets/oppenheimer.jpg')
+  chests: Movie[] = [
+    new Movie('chests machine','assets/chest machine.png'),
   ];
 
-  Comdies: Movie[] = [
-    new Movie('The Family Plan', 'Simon Cellan Jones', 2023, ['Action', 'Comedy'],'assets/family.jpg')
+  bicycle : Movie[] = [
+    new Movie('bicycle machine','assets/bicycle machine.jpeg'),
   ];
 
-  Dramas: Movie[] = [
-    new Movie('Znachor', 'Michal Gazda', 2023, ['Drama', 'Romance'],'assets/znachor.jpg'),
-    new Movie('Oppenheimer', 'Christopher Nolan', 2023, ['Biography', 'Drama','History'],'assets/oppenheimer.jpg')
+  biceps : Movie[] = [
+    new Movie('biceps machine','assets/biceps machine.jpg'),
   ];
 
-  Histories: Movie[] = [
-    new Movie('Oppenheimer', 'Christopher Nolan', 2023, ['Biography', 'Drama','History'],'assets/oppenheimer.jpg')
+  running: Movie[] = [
+    new Movie('running machine', 'assets/running machine.jpg'),
   ];
 
-  Thrillers: Movie[] = [
-    new Movie('Tiger 3', 'Maneesh Sharma', 2023, ['Action', 'Adventure','Thriller'],'assets/tiger3.png')
+  stair: Movie[] = [
+    new Movie('stair machine', 'assets/stair machine.jpg'),
   ];
 
-  Romances: Movie[] = [
-    new Movie('Znachor', 'Michal Gazda', 2023, ['Drama', 'Romance'],'assets/znachor.jpg')
-  ];
 
   getCategoryToShow(category: string) : Movie [] {
     switch (category) {
       case 'ALL':
         return this.getMovies();
-      case 'Adventure':
-        return this.Adventures;
-      case 'Action':
-        return this.Actions;
-      case 'Biography':
-        return this.Biographys;
-      case 'Comedy':
-        return this.Comdies;
-      case 'Drama':
-        return this.Dramas;
-      case 'History':
-        return this.Histories;
-      case 'Thriller':
-        return this.Thrillers;
-      case 'Romance':
-        return this.Romances;
+      case 'back':
+        return this.back;
+      case 'legs':
+        return this.legs;
+      case 'chests':
+        return this.chests;
+      case 'bicycle':
+        return this.bicycle;
+      case 'biceps':
+        return this.biceps;
+      case 'running':
+        return this.running;
+      case 'stair':
+        return this.stair;
       default:
         return []; 
     }

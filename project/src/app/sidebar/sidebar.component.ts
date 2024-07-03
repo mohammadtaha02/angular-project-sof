@@ -10,14 +10,13 @@ export class SidebarComponent {
 
   categories = [
     { name: 'ALL'},
-    { name: 'Comedy' },
-    { name: 'Action' },
-    { name: 'Adventure' },
-    { name: 'Thriller' },
-    { name: 'Biography' },
-    { name: 'Drama' },
-    { name: 'History' },
-    { name: 'Romance' },
+    { name: 'back' },
+    { name: 'legs' },
+    { name: 'chests' },
+    { name: 'bicycle' },
+    { name: 'biceps' },
+    { name: 'running' },
+    { name: 'stair' },
   ];
 
   constructor() {}

@@ -15,15 +15,7 @@ export class ProductsComponent {
     this.moviesService = this.injector.get(MoviesService);
   }
 
-  allProducts: Movie[] = [];
-  Adventures: Movie[] = [];
-  Actions: Movie[] = [];
-  Biographys: Movie[] = [];
-  Comdies: Movie[] = [];
-  Dramas: Movie[] = [];
-  Histories: Movie[] = [];
-  Thrillers: Movie[] = [];
-  Romances: Movie[] = [];
+
   toShow: Movie[] = [];
   
   @Input() set categoryToShow(category: string) {
@@ -31,29 +23,26 @@ export class ProductsComponent {
       case 'ALL':
         this.toShow = this.moviesService.getCategoryToShow('ALL');
         break;
-      case 'Adventure':
-        this.toShow = this.moviesService.getCategoryToShow('Adventure');
+      case 'back':
+        this.toShow = this.moviesService.getCategoryToShow('back');
         break;
-      case 'Action':
-        this.toShow = this.moviesService.getCategoryToShow('Action');
+      case 'legs':
+        this.toShow = this.moviesService.getCategoryToShow('legs');
         break;
-      case 'Biography':
-        this.toShow = this.moviesService.getCategoryToShow('Biography');
+      case 'chests':
+        this.toShow = this.moviesService.getCategoryToShow('chests');
         break;
-      case 'Comedy':
-        this.toShow = this.moviesService.getCategoryToShow('Comedy');
+      case 'bicycle':
+        this.toShow = this.moviesService.getCategoryToShow('bicycle');
         break;
-      case 'Drama':
-        this.toShow = this.moviesService.getCategoryToShow('Drama');
+      case 'biceps':
+        this.toShow = this.moviesService.getCategoryToShow('biceps');
         break;
-      case 'History':
-        this.toShow = this.moviesService.getCategoryToShow('History');
+      case 'running':
+        this.toShow = this.moviesService.getCategoryToShow('running');
         break;
-      case 'Thriller':
-        this.toShow = this.moviesService.getCategoryToShow('Thriller');
-        break;
-      case 'Romance':
-        this.toShow = this.moviesService.getCategoryToShow('Romance');
+      case 'stair':
+        this.toShow = this.moviesService.getCategoryToShow('stair');
         break;
       default:
         this.toShow = [];
