@@ -18,6 +18,16 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SubscribeComponent } from './subscribe/subscribe.component';
+import { AddTrainingComponent } from './add-training/add-training.component';
+import { UpdateTrainingComponent } from './update-training/update-training.component';
+import { ViewTrainingComponent } from './view-training/view-training.component';
+import { SearchTrainingComponent } from './search-training/search-training.component';
+import { FilterTrainingComponent } from './filter-training/filter-training.component';
+import { AddProductComponent } from './add-product/add-product.component';
+import { UpdateProductComponent } from './update-product/update-product.component';
+import { ViewProductsComponent } from './view-products/view-products.component';
+import { SearchProductComponent } from './search-product/search-product.component';
+import { FilterProductComponent } from './filter-product/filter-product.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -44,8 +54,18 @@ const routes: Routes = [
     },
 
   ]},
-  {path: 'register', component: RegisterComponent},
-  {path: 'subscribe', component: SubscribeComponent},
+  { path: 'register', component: RegisterComponent},
+  { path: 'subscribe', component: SubscribeComponent},
+  { path: 'add-training', component: AddTrainingComponent },
+  { path: 'update-training', component: UpdateTrainingComponent },
+  { path: 'view-trainings', component: ViewTrainingComponent },
+  { path: 'search-training', component: SearchTrainingComponent },
+  { path: 'filter-training', component: FilterTrainingComponent },
+  { path: 'add-product', component: AddProductComponent },
+  { path: 'update-product', component: UpdateProductComponent },
+  { path: 'view-products', component: ViewProductsComponent },
+  { path: 'search-product', component: SearchProductComponent },
+  { path: 'filter-product', component: FilterProductComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
 ];
@@ -66,6 +86,16 @@ const routes: Routes = [
     RegisterComponent,
     ProfileComponent,
     SubscribeComponent,
+    AddTrainingComponent,
+    UpdateTrainingComponent,
+    ViewTrainingComponent,
+    SearchTrainingComponent,
+    FilterTrainingComponent,
+    AddProductComponent,
+    UpdateProductComponent,
+    ViewProductsComponent,
+    SearchProductComponent,
+    FilterProductComponent,
   ],
   imports: [
     BrowserModule,

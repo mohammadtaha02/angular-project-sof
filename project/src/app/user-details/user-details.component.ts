@@ -8,12 +8,12 @@ import { User } from '../model/user';
   styleUrls: ['./user-details.component.css']
 })
 export class UserDetailsComponent implements OnInit {
+  email: string | null = null;
   image: string = '';
   name: string = '';
-  email!: any;
-  male!: boolean;
-  maleInfo!: string;
-  birthDate!: Date;
+  male: boolean = false;
+  maleInfo: string = '';
+  birthDate: Date = new Date();
 
   constructor(private userService: UsersService) { }
 
@@ -22,12 +22,17 @@ export class UserDetailsComponent implements OnInit {
     if (this.email != null) {
       this.userService.exists(this.email).subscribe(user => {
         if (user != null) {
-          this.image = user.image;
-          this.name = user.name;
-          this.email = user.email;
-          this.male = user.male;
-          this.maleInfo = this.male ? 'Male' : 'Female';
-          this.birthDate = user.birthDate;
+          this.image = user.getImage();
+          this.name = user.getName();
+          this.email = user.getEmail();
+          this.male = user.getMale();
+          if(this.male == true){
+            this.maleInfo = 'Male'
+          }
+          else{
+            this.maleInfo = 'Female'
+          }
+          this.birthDate = user.getBirthDate();
         } else {
           this.email = '';
         }
