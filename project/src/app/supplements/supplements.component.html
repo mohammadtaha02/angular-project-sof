@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Supplements Catalog</title>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 sidebar p-3">
+        <h2 style="color: white;">Catalog Supplements</h2>
+        <div class="accordion" id="catalogAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button btn-custom collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#item1" aria-expanded="false" aria-controls="item1">
+                משקאות
+              </button>
+            </h2>
+            <div id="item1" class="accordion-collapse collapse" data-bs-parent="#catalogAccordion">
+              <div class="accordion-body">
+                <button class="btn btn-link" onclick="showProduct('חטיף חלבון', 'protein-bar.jpg', 'תיאור של חטיף חלבון')">חטיף חלבון</button>
+                <button class="btn btn-link" onclick="showProduct('יוגורט', 'yogurt.jpg', 'תיאור של יוגורט')">יוגורט</button>
+                <button class="btn btn-link" onclick="showProduct('משקה חלב', 'milk-drink.jpg', 'תיאור של משקה חלב')">משקה חלב</button>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button btn-custom collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#item2" aria-expanded="false" aria-controls="item2">
+                חטיפים
+              </button>
+            </h2>
+            <div id="item2" class="accordion-collapse collapse" data-bs-parent="#catalogAccordion">
+              <div class="accordion-body">
+                <button class="btn btn-link" onclick="showProduct('חטיף אנרגיה', 'energy-bar.jpg', 'תיאור של חטיף אנרגיה')">חטיף אנרגיה</button>
+                <button class="btn btn-link" onclick="showProduct('חטיף דגנים', 'granola-bar.jpg', 'תיאור של חטיף דגנים')">חטיף דגנים</button>
+                <button class="btn btn-link" onclick="showProduct('חטיף פירות יבשים', 'dried-fruit-bar.jpg', 'תיאור של חטיף פירות יבשים')">חטיף פירות יבשים</button>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button btn-custom collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#item3" aria-expanded="false" aria-controls="item3">
+                תוספים
+              </button>
+            </h2>
+            <div id="item3" class="accordion-collapse collapse" data-bs-parent="#catalogAccordion">
+              <div class="accordion-body">
+                <button class="btn btn-link" onclick="showProduct('ויטמינים', 'vitamins.jpg', 'תיאור של ויטמינים')">ויטמינים</button>
+                <button class="btn btn-link" onclick="showProduct('מינרלים', 'minerals.jpg', 'תיאור של מינרלים')">מינרלים</button>
+                <button class="btn btn-link" onclick="showProduct('תוספי תזונה אחרים', 'other-supplements.jpg', 'תיאור של תוספי תזונה אחרים')">תוספי תזונה אחרים</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main content -->
+      <div class="col-md-9 p-3">
+        <div id="productCard" class="card" style="display: none;">
+          <img id="productImage" src="" class="card-img-top" alt="Product Image">
+          <div class="card-body">
+            <h5 id="productName" class="card-title"></h5>
+            <p id="productDescription" class="card-text"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function showProduct(name, image, description) {
+      document.getElementById('productCard').style.display = 'block';
+      document.getElementById('productImage').src = image;
+      document.getElementById('productName').textContent = name;
+      document.getElementById('productDescription').textContent = description;
+    }
+  </script>
+</body>
+</html>

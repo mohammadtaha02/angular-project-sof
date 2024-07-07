@@ -28,6 +28,7 @@ import { UpdateProductComponent } from './update-product/update-product.componen
 import { ViewProductsComponent } from './view-products/view-products.component';
 import { SearchProductComponent } from './search-product/search-product.component';
 import { FilterProductComponent } from './filter-product/filter-product.component';
+import { SupplementsComponent } from './supplements/supplements.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -66,6 +67,7 @@ const routes: Routes = [
   { path: 'view-products', component: ViewProductsComponent },
   { path: 'search-product', component: SearchProductComponent },
   { path: 'filter-product', component: FilterProductComponent },
+  { path: 'supplements', component: SupplementsComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
 ];
@@ -96,6 +98,7 @@ const routes: Routes = [
     ViewProductsComponent,
     SearchProductComponent,
     FilterProductComponent,
+    SupplementsComponent,
   ],
   imports: [
     BrowserModule,

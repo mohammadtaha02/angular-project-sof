@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Movie } from '../movie';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Movie } from '../model/movie';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +16,10 @@ export class MoviesService {
     new Movie('bicycle machine','assets/bicycle machine.jpeg'),
     new Movie('running machine', 'assets/running machine.jpg'),
     new Movie('stair machine', 'assets/stair machine.jpg'),
+    new Movie('Strawbery Go', 'assets/go strawbery.jpg'),
+    new Movie('Cookies Go', 'assets/go vanilla.jpg'),
+    new Movie('Cookies Go', 'assets/go cookies.jpg'),
+    new Movie('Coffee Go', 'assets/go coffee.jpg'),
   ]
 
   getMovies(): Movie[] {
