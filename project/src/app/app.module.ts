@@ -29,6 +29,7 @@ import { ViewProductsComponent } from './view-products/view-products.component';
 import { SearchProductComponent } from './search-product/search-product.component';
 import { FilterProductComponent } from './filter-product/filter-product.component';
 import { SupplementsComponent } from './supplements/supplements.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -106,6 +107,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
   ],
   exports: [RouterModule],
   providers: [],
