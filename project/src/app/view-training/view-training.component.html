@@ -1,1 +1,27 @@
-<p>view-training works!</p>
+<div class="container">
+  <h2>Available Trainings</h2>
+
+  <div class="training-category">
+    <h3>Build Muscles</h3>
+    <div *ngFor="let training of muscleBuildingTrainings" class="training-item">
+      <img [src]="training.image" alt="Muscle Building Icon" class="thumbnail">
+      <div class="training-info">
+        <h4>{{ training.name }}</h4>
+        <p>{{ training.description }}</p>
+        <button (click)="viewDetails(training.id)" class="btn btn-primary">View Details</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="training-category">
+    <h3>Lose Weight</h3>
+    <div *ngFor="let training of weightLossTrainings" class="training-item">
+      <img [src]="training.image" alt="Weight Loss Icon" class="thumbnail">
+      <div class="training-info">
+        <h4>{{ training.name }}</h4>
+        <p>{{ training.description }}</p>
+        <button (click)="viewDetails(training.id)" class="btn btn-primary">View Details</button>
+      </div>
+    </div>
+  </div>
+</div>

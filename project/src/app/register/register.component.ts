@@ -24,16 +24,17 @@ export class RegisterComponent {
 
   onSubmit() {
     if (this.registerForm.valid) {
-      const mail = this.registerForm.value.email
-      const password = this.registerForm.value.password
-      const name = this.registerForm.value.name
-      const gender = this.registerForm.value.gender === 'male'
-      const birthdate = this.registerForm.value.birthdate
-      this.userService.register( mail, password,name , gender, birthdate)
-      this.router.navigateByUrl('profile/login')
+      const mail = this.registerForm.value.email;
+      const password = this.registerForm.value.password;
+      const name = this.registerForm.value.name;
+      const gender = this.registerForm.value.gender === 'male' ? true : false;
+      const birthdate = this.registerForm.value.birthdate;
+      this.userService.register(mail, password, name, gender, birthdate);
+      this.router.navigateByUrl('profile/login');
     } else {
-      alert('Please fill out all the required fields correctly.')
+      alert('Please fill out all the required fields correctly.');
     }
   }
+  
   
 }

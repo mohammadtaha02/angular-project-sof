@@ -1,0 +1,15 @@
+<div class="container">
+    <h2>Workouts Schedule</h2>
+    <div *ngFor="let workout of workouts">
+        <div class="card">
+            <div class="card-header">
+                {{ workout.title }} - {{ workout.day }}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Muscle Group: {{ workout.muscle_group }}</h5>
+                <p class="card-text">{{ workout.description }}</p>
+                <p class="card-text"><strong>Exercises:</strong> {{ workout.exercises }}</p>
+            </div>
+        </div>
+    </div>
+</div>

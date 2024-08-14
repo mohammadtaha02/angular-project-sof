@@ -1,0 +1,50 @@
+
+  .training-category {
+    margin-bottom: 30px;
+  }
+  
+  .training-category h4 {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  .training-category p {
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .btn {
+    margin-top: 10px;
+  }
+  .btn:hover {
+    background-color: #0056b3;
+    color: white;
+  }
+  
+  .thumbnail:hover {
+    transform: scale(1.1);
+  }
+  
+  .thumbnail {
+    width: 100px;
+    height: 100px;
+    margin-right: 15px;
+    display: inline-block;
+    border-radius: 15px;
+  }
+  
+  .training-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .training-info {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  .btn {
+    margin-top: 10px;
+  }
+  

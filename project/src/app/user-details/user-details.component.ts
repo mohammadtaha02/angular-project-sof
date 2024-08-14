@@ -26,17 +26,14 @@ export class UserDetailsComponent implements OnInit {
           this.name = user.getName();
           this.email = user.getEmail();
           this.male = user.getMale();
-          if(this.male == true){
-            this.maleInfo = 'Male'
-          }
-          else{
-            this.maleInfo = 'Female'
-          }
+          this.maleInfo = this.male ? 'Male' : 'Female';
           this.birthDate = user.getBirthDate();
         } else {
           this.email = '';
         }
       });
+      
+      
     } else {
       this.email = '';
     }

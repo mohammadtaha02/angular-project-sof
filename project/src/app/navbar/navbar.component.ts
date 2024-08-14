@@ -12,20 +12,23 @@ export class NavbarComponent implements OnInit{
   user !: any;
   constructor(private router: Router, private userService : UsersService){}
   ngOnInit(): void {
-    this.router.events.subscribe((val:any)=>{
-      if(val.url){
+    this.router.events.subscribe((val: any) => {
+      if (val.url) {
         if (sessionStorage.getItem('currentUser')) {
           const userEmail = sessionStorage.getItem('currentUser');
           if (userEmail) {
-            this.user = this.userService.exists(userEmail);
-            if(this.user!=null){
-              this.loggedIn = true;
-            }
+            this.userService.exists(userEmail).subscribe(user => {
+              if (user) {
+                this.user = user;
+                this.loggedIn = true;
+              }
+            });
           }
         }
       }
-    })
-   }
+    });
+  }
+  
 
   openHome() {
     this.router.navigate(['/home']);

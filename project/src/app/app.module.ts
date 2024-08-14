@@ -20,7 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SubscribeComponent } from './subscribe/subscribe.component';
 import { AddTrainingComponent } from './add-training/add-training.component';
 import { UpdateTrainingComponent } from './update-training/update-training.component';
-import { ViewTrainingComponent } from './view-training/view-training.component';
+import { ViewTrainingsComponent } from './view-training/view-training.component';
 import { SearchTrainingComponent } from './search-training/search-training.component';
 import { FilterTrainingComponent } from './filter-training/filter-training.component';
 import { AddProductComponent } from './add-product/add-product.component';
@@ -30,6 +30,10 @@ import { SearchProductComponent } from './search-product/search-product.componen
 import { FilterProductComponent } from './filter-product/filter-product.component';
 import { SupplementsComponent } from './supplements/supplements.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TrainingDetailsComponent } from './training-details/training-details.component';
+import { WorkoutComponent } from './workout/workout.component';
+import { WorkoutListComponent } from './workout-list/workout-list.component';
+import { WorkoutDetailsComponent } from './workout-details/workout-details.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -60,7 +64,7 @@ const routes: Routes = [
   { path: 'subscribe', component: SubscribeComponent},
   { path: 'add-training', component: AddTrainingComponent },
   { path: 'update-training', component: UpdateTrainingComponent },
-  { path: 'view-trainings', component: ViewTrainingComponent },
+  { path: 'view-trainings', component: ViewTrainingsComponent },
   { path: 'search-training', component: SearchTrainingComponent },
   { path: 'filter-training', component: FilterTrainingComponent },
   { path: 'add-product', component: AddProductComponent },
@@ -69,6 +73,9 @@ const routes: Routes = [
   { path: 'search-product', component: SearchProductComponent },
   { path: 'filter-product', component: FilterProductComponent },
   { path: 'supplements', component: SupplementsComponent },
+  { path: 'workouts', component: WorkoutComponent },
+  { path: 'workouts/:id', component: WorkoutComponent },
+  { path: 'training-details/:id', component: TrainingDetailsComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
 ];
@@ -91,7 +98,7 @@ const routes: Routes = [
     SubscribeComponent,
     AddTrainingComponent,
     UpdateTrainingComponent,
-    ViewTrainingComponent,
+    ViewTrainingsComponent,
     SearchTrainingComponent,
     FilterTrainingComponent,
     AddProductComponent,
@@ -100,6 +107,10 @@ const routes: Routes = [
     SearchProductComponent,
     FilterProductComponent,
     SupplementsComponent,
+    TrainingDetailsComponent,
+    WorkoutComponent,
+    WorkoutListComponent,
+    WorkoutDetailsComponent,
   ],
   imports: [
     BrowserModule,

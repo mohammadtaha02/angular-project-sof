@@ -1,0 +1,36 @@
+.container {
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .card {
+    border-radius: 10px;
+  }
+  
+  .card-header {
+    border-bottom: 2px solid #ddd;
+  }
+  
+  h4 {
+    margin: 0;
+  }
+  
+  p {
+    margin: 0.5rem 0;
+  }
+  
+  .btn {
+    display: block;
+    width: 150px;
+  }
+  
+  .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+  }
+  
+  .btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+  }
+  

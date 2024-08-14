@@ -1,0 +1,12 @@
+<div *ngIf="workout">
+    <h2>{{ workout.title }}</h2>
+    <p><strong>Description:</strong> {{ workout.description }}</p>
+    <p><strong>Muscle Group:</strong> {{ workout.muscle_group }}</p>
+    <p><strong>Exercises:</strong></p>
+    <ul>
+      <li *ngFor="let exercise of workout.exercises.split(',')">
+        {{ exercise }}
+      </li>
+    </ul>
+  </div>
+  

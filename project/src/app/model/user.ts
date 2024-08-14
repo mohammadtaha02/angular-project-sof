@@ -10,8 +10,13 @@ export class User {
         this.email = email;
         this.password = password;
         this.name = name;
-        this.male = male;
-        this.image = male ? 'https://clipart-library.com/2023/male-clipart-md.png' : 'https://clipart-library.com/2023/350-3508951_big-image-faceless-woman-clipart.png';
+        this.male = male == true;
+        if(this.male){
+            this.image ='https://clipart-library.com/2023/male-clipart-md.png'
+        }
+        else{
+            this.image ='https://clipart-library.com/2023/350-3508951_big-image-faceless-woman-clipart.png';
+        }
         this.birthDate = birthDate;
     }
 

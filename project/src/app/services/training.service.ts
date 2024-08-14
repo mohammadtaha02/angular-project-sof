@@ -7,7 +7,7 @@ import { Training } from '../model/training';
   providedIn: 'root'
 })
 export class TrainingService {
-  private baseUrl = 'http://localhost/backend';
+  private baseUrl = 'http://localhost/backend/php/trainings';
 
   constructor(private http: HttpClient) {}
 
@@ -30,4 +30,12 @@ export class TrainingService {
   filterTraining(params: any): Observable<Training[]> {
     return this.http.post<Training[]>(`${this.baseUrl}/filterTraining.php`, params);
   }
+
+  getNonSubTrainingsByGoal(goal: string): Observable<Training[]> {
+    return this.http.get<Training[]>(`${this.baseUrl}/getTrainings.php?goal=${goal}`);
+  }
+  getTrainingById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/getTrainingById.php?id=${id}`);
+  }
+  
 }
