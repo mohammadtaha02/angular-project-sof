@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
@@ -34,6 +35,7 @@ import { TrainingDetailsComponent } from './training-details/training-details.co
 import { WorkoutComponent } from './workout/workout.component';
 import { WorkoutListComponent } from './workout-list/workout-list.component';
 import { WorkoutDetailsComponent } from './workout-details/workout-details.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -76,6 +78,7 @@ const routes: Routes = [
   { path: 'workouts', component: WorkoutComponent },
   { path: 'workouts/:id', component: WorkoutComponent },
   { path: 'training-details/:id', component: TrainingDetailsComponent },
+  { path: 'cart', component: CartComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
 ];
@@ -111,6 +114,7 @@ const routes: Routes = [
     WorkoutComponent,
     WorkoutListComponent,
     WorkoutDetailsComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
@@ -119,6 +123,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FormsModule
   ],
   exports: [RouterModule],
   providers: [],

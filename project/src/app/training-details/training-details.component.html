@@ -1,7 +1,6 @@
 <div *ngIf="training" class="container mt-4">
   <h2 class="mb-4">{{ training.description }}</h2>
   <p><strong>Date:</strong> {{ training.training_date | date }}</p>
-  <p><strong>Goal:</strong> {{ training.goal }}</p>
 
   <div *ngIf="workouts.length > 0" class="mt-4">
     <h3>Workouts</h3>

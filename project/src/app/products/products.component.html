@@ -1,16 +1,13 @@
-<div class="row" style="margin-left: -15px;">
-  <div *ngFor="let movie of toShow" class="col-md-3">
-    <div class="card" style="width: 15rem; height: 30rem;">
-      <div class="card-header">
-        <h3 class="mb-0">Machines</h3>
-      </div>
+<div class="row">
+  <div *ngFor="let product of filteredProducts" class="col-md-4 mb-3">
+    <div class="card">
+      <img [src]="product.image" class="card-img-top" alt="{{ product.name }}">
       <div class="card-body">
-        <img [src]="movie.img" class="card-img-top product-image" alt="{{ movie.title }}">
-        <div class="card-body product-details">
-          <h5 class="card-title product-name">{{ movie.title }}</h5>
-          <p>{{ movie.toString() }}</p>
-          <button class="btn btn-primary">Add to Cart</button>
-        </div>
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text">{{ product.description }}</p>
+        <p class="card-text"><strong>Price:</strong> {{ product.price }}</p>
+        <p class="card-text"><strong>Quantity:</strong> {{ product.quantity }}</p>
+        <button class="btn btn-primary">Add to Cart</button>
       </div>
     </div>
   </div>

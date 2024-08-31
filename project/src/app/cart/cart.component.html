@@ -1,0 +1,34 @@
+<div class="container">
+    <h2>Your Cart</h2>
+    
+    <div *ngIf="cartItems.length > 0; else emptyCart">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Product</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total Price</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of cartItems">
+            <td>{{ item.product_name }}</td>
+            <td>
+              <input type="number" [(ngModel)]="item.quantity" (change)="updateQuantity(item)" min="1" class="form-control">
+            </td>
+            <td>{{ item.total_price | currency }}</td>
+            <td>
+              <button (click)="removeFromCart(item.cart_id)" class="btn btn-danger">Remove</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>Total: {{ getTotalPrice() | currency }}</h3>
+    </div>
+    
+    <ng-template #emptyCart>
+      <p>Your cart is empty.</p>
+    </ng-template>
+  </div>
+  

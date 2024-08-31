@@ -1,54 +1,39 @@
-import { Component, Input ,Injector} from '@angular/core';
-import { Movie } from '../model/movie';
-import { MoviesService } from '../services/movies.service';
+import { Component, Input, OnChanges } from '@angular/core';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
+export class ProductsComponent implements OnChanges {
+  @Input() categoryToShow: string = 'ALL';
+  products: any[] = [];
+  filteredProducts: any[] = [];
 
-export class ProductsComponent {
-  private moviesService: MoviesService;
+  constructor(private productService: ProductService) {}
 
-  constructor(private injector: Injector) {
-    this.moviesService = this.injector.get(MoviesService);
+  ngOnInit(): void {
+    this.loadProducts();
   }
 
+  ngOnChanges(): void {
+    this.filterProducts();
+  }
 
-  toShow: Movie[] = [];
-  
-  @Input() set categoryToShow(category: string) {
-    switch (category) {
-      case 'ALL':
-        this.toShow = this.moviesService.getCategoryToShow('ALL');
-        break;
-      case 'back':
-        this.toShow = this.moviesService.getCategoryToShow('back');
-        break;
-      case 'legs':
-        this.toShow = this.moviesService.getCategoryToShow('legs');
-        break;
-      case 'chests':
-        this.toShow = this.moviesService.getCategoryToShow('chests');
-        break;
-      case 'bicycle':
-        this.toShow = this.moviesService.getCategoryToShow('bicycle');
-        break;
-      case 'biceps':
-        this.toShow = this.moviesService.getCategoryToShow('biceps');
-        break;
-      case 'running':
-        this.toShow = this.moviesService.getCategoryToShow('running');
-        break;
-      case 'stair':
-        this.toShow = this.moviesService.getCategoryToShow('stair');
-        break;
-      default:
-        this.toShow = [];
-        break;
+  loadProducts(): void {
+    this.productService.getProducts().subscribe((data: any[]) => {
+      this.products = data;
+      this.filterProducts();
+    });
+  }
+
+  filterProducts(): void {
+    if (this.categoryToShow === 'ALL') {
+      this.filteredProducts = this.products;
+    } else {
+      this.filteredProducts = this.products.filter(product => 
+        product.name.toLowerCase().includes(this.categoryToShow.toLowerCase()));
     }
-  }  
+  }
 }
-  
-

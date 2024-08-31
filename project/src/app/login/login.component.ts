@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit{
       const password = this.loginForm.value.password;
       this.userService.exists(mail).subscribe(user => {
         if (user != null && user.getPassword() == password) {
+          sessionStorage.setItem('currentUser', user.getEmail());
           this.userService.login(mail, password);
           this.router.navigateByUrl('profile/user');
         } else {
@@ -33,4 +34,5 @@ export class LoginComponent implements OnInit{
       });
     }
   }
+  
 }
