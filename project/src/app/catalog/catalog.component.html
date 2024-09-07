@@ -1,17 +1,36 @@
 <div class="row">
+  <!-- Sidebar -->
   <div class="col-2">
-    <!-- <app-sidebar (categorySelected)="onCategorySelected($event)"></app-sidebar> -->
+    <div class="bg-light p-3">
+      <h5>Categories</h5>
+      <button class="btn btn-outline-secondary w-100 mb-2" (click)="filterByCategory('ALL')">All</button>
+      <button class="btn btn-outline-secondary w-100 mb-2" (click)="filterByCategory('Machine')">Machines</button>
+      <button class="btn btn-outline-secondary w-100 mb-2" (click)="filterByCategory('Supplement')">Supplements</button>
+    </div>
   </div>
+
+  <!-- Product Display Area -->
   <div class="col">
     <div class="row">
       <div *ngFor="let product of filteredProducts" class="col-md-4">
-        <div class="card mb-4">
-          <img [src]="product.image" class="card-img-top" alt="{{ product.name }}">
-          <div class="card-body">
+        <div class="card mb-4 shadow-sm" style="border-radius: 10px;">
+          <img [src]="product.image" class="card-img-top" alt="{{ product.name }}" style="height: 250px; object-fit: cover;">
+          <div class="card-body text-center">
             <h5 class="card-title">{{ product.name }}</h5>
             <p class="card-text">{{ product.description }}</p>
             <p class="card-text"><strong>Price:</strong> {{ product.price | currency }}</p>
-            <button class="btn btn-primary">Add to Cart</button>
+
+            <div *ngIf="isLoggedIn; else loginPrompt">
+              <div class="form-group text-center">
+                <label for="quantity-{{product.id}}">Quantity:</label>
+                <input type="number" id="quantity-{{product.id}}" [(ngModel)]="product.selectedQuantity" min="1" class="form-control mx-auto" style="width: 100px;">
+              </div>
+              <button class="btn btn-primary" (click)="addToCart(product)">Add to Cart</button>
+            </div>
+
+            <ng-template #loginPrompt>
+              <p>Please log in to add items to your cart.</p>
+            </ng-template>
           </div>
         </div>
       </div>

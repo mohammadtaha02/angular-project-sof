@@ -6,14 +6,16 @@ export class Products{
     category: string;
     stock: number;
     image!: string;
+    selectedQuantity !: number; // Add this line
 
-    constructor(id: number, name: string, description: string, price: number, category: string, stock: number){
+    constructor(id: number, name: string, description: string, price: number, category: string, stock: number, selectedQuantity:number){
         this.id = id
         this.name = name
         this.description = description
         this.price = price
         this.category = category
         this.stock = stock
+        this.selectedQuantity = selectedQuantity
     }
     getId(): number {
         return this.id;

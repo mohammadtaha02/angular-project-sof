@@ -1,0 +1,38 @@
+.bg-light {
+    background-color: #f8f9fa;
+  }
+  
+  h5 {
+    font-weight: bold;
+  }
+  
+  .card {
+    border-radius: 10px;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-body {
+    padding: 15px;
+  }
+  
+  .btn-primary {
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  .sidebar {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  
+  .sidebar button {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  

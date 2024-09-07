@@ -22,5 +22,8 @@ export class ProductService {
   getSupplements(): Observable<Products[]> {
     return this.http.get<Products[]>(`${this.baseUrl}/getProducts.php?category=supplements`);
   }
+  filterProductsByCategory(category: string): Observable<Products[]> {
+    return this.http.get<Products[]>(`${this.baseUrl}/getProducts.php?category=${category}`);
+  }
   
 }

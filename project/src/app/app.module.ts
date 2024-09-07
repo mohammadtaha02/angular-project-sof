@@ -36,6 +36,11 @@ import { WorkoutComponent } from './workout/workout.component';
 import { WorkoutListComponent } from './workout-list/workout-list.component';
 import { WorkoutDetailsComponent } from './workout-details/workout-details.component';
 import { CartComponent } from './cart/cart.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { PurchaseModalComponent } from './purchase-modal/purchase-modal.component';
+
+
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -115,10 +120,13 @@ const routes: Routes = [
     WorkoutListComponent,
     WorkoutDetailsComponent,
     CartComponent,
+    PurchaseModalComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NgbModule,
+    NgbDropdownModule,
     RouterModule.forRoot(routes),
     ReactiveFormsModule,
     HttpClientModule,

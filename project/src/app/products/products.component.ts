@@ -10,10 +10,13 @@ export class ProductsComponent implements OnChanges {
   @Input() categoryToShow: string = 'ALL';
   products: any[] = [];
   filteredProducts: any[] = [];
+  isLoggedIn!: boolean;
 
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
+    const currentUser = sessionStorage.getItem('currentUser');
+    this.isLoggedIn = !!currentUser;
     this.loadProducts();
   }
 

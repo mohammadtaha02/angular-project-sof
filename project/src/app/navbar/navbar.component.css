@@ -1,43 +1,112 @@
 nav {
-    background-color: #333;
-    padding-bottom: 52px;
+  background-color: #333;
+  padding-bottom: 10px; 
+  width: 100%;          
+  top: 0;               
+  left: 0;
+  z-index: 1000;        
+  position: relative;   
+}
+
+
+nav.sticky {
+  position: fixed;      
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+body.sticky-padding {
+  padding-top: 70px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+li {
+  float: none;
+}
+
+.normal {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.normal:hover {
+  background-color: #ddd;
+  color: black;
+  border-radius: 5px;
+}
+
+.notNormal {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 10px 14px;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Dropdown menu style */
+ul.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 150px;
+  z-index: 1050;
+}
+
+.dropdown-menu {
+  display: none;
+}
+
+.dropdown.show .dropdown-menu {
+  display: block;
+}
+
+.dropdown-item {
+  background-color: white;
+  color: black;
+  text-align: center;
+  padding: 10px 15px;
+  text-decoration: none;
+  border: none;
+  display: block;
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+}
+
+.dropdown-toggle.notNormal {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-item button {
+  background: none;
+  border: none;
+  color: black;
+  text-align: left;
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  ul {
+    flex-direction: column;
   }
 
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    position: fixed;
-  }
-  
   li {
-    float: left;
+    width: 100%;
   }
-  
-  .normal {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-  .dropdownStyle{
-    display: block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-  .normal:hover {
-    background-color: #ddd;
-    color: black;
-    border-radius: 5px;
-  }
-  .notNormal{
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 10px 14px;
-    text-decoration: none;
-    cursor: pointer;
-  }
+}

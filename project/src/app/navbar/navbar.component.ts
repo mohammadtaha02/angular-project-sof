@@ -2,15 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsersService } from '../services/users.service';
 
+// Import Bootstrap Dropdown
+import { Dropdown } from 'bootstrap';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit{
-  loggedIn : boolean = false
-  user !: any;
-  constructor(private router: Router, private userService : UsersService){}
+export class NavbarComponent implements OnInit {
+  loggedIn: boolean = false;
+  user!: any;
+
+  constructor(private router: Router, private userService: UsersService) {}
+
   ngOnInit(): void {
     this.router.events.subscribe((val: any) => {
       if (val.url) {
@@ -27,14 +32,11 @@ export class NavbarComponent implements OnInit{
         }
       }
     });
-  }
-  
 
-  openHome() {
-    this.router.navigate(['/home']);
-    }
-    onSubmit(){
-      this.loggedIn = false
-      this.userService.logout()
-    }
+  }
+
+  onSubmit() {
+    this.loggedIn = false;
+    this.userService.logout();
+  }
 }
