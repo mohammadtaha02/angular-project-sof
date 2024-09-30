@@ -1,0 +1,29 @@
+<div class="plan-container">
+  <h2>Your Workout Plan</h2>
+  <ul class="workout-plan-list">
+    <li *ngFor="let workout of workoutPlan">{{ workout }}</li>
+  </ul>
+
+  <h2>Your Weekly Workout Schedule</h2>
+  <table class="table workout-schedule-table">
+    <thead>
+      <tr>
+        <th>Day</th>
+        <th>Workout</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let day of workoutSchedule">
+        <td>{{ day.day }}</td>
+        <td>
+          <ul>
+            <li *ngFor="let workout of day.workouts">{{ workout }}</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Your Nutrition Plan</h2>
+  <p class="nutrition-plan">{{ nutritionPlan }}</p>
+</div>

@@ -20,15 +20,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SubscribeComponent } from './subscribe/subscribe.component';
 import { AddTrainingComponent } from './add-training/add-training.component';
-import { UpdateTrainingComponent } from './update-training/update-training.component';
 import { ViewTrainingsComponent } from './view-training/view-training.component';
-import { SearchTrainingComponent } from './search-training/search-training.component';
-import { FilterTrainingComponent } from './filter-training/filter-training.component';
 import { AddProductComponent } from './add-product/add-product.component';
-import { UpdateProductComponent } from './update-product/update-product.component';
-import { ViewProductsComponent } from './view-products/view-products.component';
-import { SearchProductComponent } from './search-product/search-product.component';
-import { FilterProductComponent } from './filter-product/filter-product.component';
 import { SupplementsComponent } from './supplements/supplements.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TrainingDetailsComponent } from './training-details/training-details.component';
@@ -38,7 +31,9 @@ import { WorkoutDetailsComponent } from './workout-details/workout-details.compo
 import { CartComponent } from './cart/cart.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
-import { PurchaseModalComponent } from './purchase-modal/purchase-modal.component';
+import { ProgressComponent } from './progress/progress.component';
+import { PlanComponent } from './plan/plan.component';
+import { ActualWorkoutsComponent } from './actual-workouts/actual-workouts.component';
 
 
 
@@ -47,38 +42,42 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'catalog', component: CatalogComponent },
   { path: 'profile', component: ProfileComponent,
-  children:[
-    {
-      path:'',
-      pathMatch:'full',
-      redirectTo:'login'
-    },
-    {
-      path:'login',
-      component: LoginComponent
-    },
-    {
-      path:'register',
-      component: RegisterComponent
-    },
-    {
-      path: 'user', 
-      component: UserDetailsComponent
-    },
-
-  ]},
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'login'
+      },
+      {
+        path: 'login',
+        component: LoginComponent
+      },
+      {
+        path: 'register',
+        component: RegisterComponent
+      },
+      {
+        path: 'user', 
+        component: UserDetailsComponent,
+      },
+      {
+        path: 'workout-plan',  // Add this route for Workout Plan & Schedule
+        component: PlanComponent
+      },
+      {
+        path: 'workouts',  // Future route for Actual Workouts
+        component: WorkoutComponent  // Placeholder until implemented
+      },
+      {
+        path: 'actual-workouts', 
+        component: ActualWorkoutsComponent 
+      }
+    ]},
   { path: 'register', component: RegisterComponent},
   { path: 'subscribe', component: SubscribeComponent},
   { path: 'add-training', component: AddTrainingComponent },
-  { path: 'update-training', component: UpdateTrainingComponent },
   { path: 'view-trainings', component: ViewTrainingsComponent },
-  { path: 'search-training', component: SearchTrainingComponent },
-  { path: 'filter-training', component: FilterTrainingComponent },
   { path: 'add-product', component: AddProductComponent },
-  { path: 'update-product', component: UpdateProductComponent },
-  { path: 'view-products', component: ViewProductsComponent },
-  { path: 'search-product', component: SearchProductComponent },
-  { path: 'filter-product', component: FilterProductComponent },
   { path: 'supplements', component: SupplementsComponent },
   { path: 'workouts', component: WorkoutComponent },
   { path: 'workouts/:id', component: WorkoutComponent },
@@ -105,22 +104,17 @@ const routes: Routes = [
     ProfileComponent,
     SubscribeComponent,
     AddTrainingComponent,
-    UpdateTrainingComponent,
     ViewTrainingsComponent,
-    SearchTrainingComponent,
-    FilterTrainingComponent,
     AddProductComponent,
-    UpdateProductComponent,
-    ViewProductsComponent,
-    SearchProductComponent,
-    FilterProductComponent,
     SupplementsComponent,
     TrainingDetailsComponent,
     WorkoutComponent,
     WorkoutListComponent,
     WorkoutDetailsComponent,
     CartComponent,
-    PurchaseModalComponent,
+    ProgressComponent,
+    PlanComponent,
+    ActualWorkoutsComponent,
   ],
   imports: [
     BrowserModule,

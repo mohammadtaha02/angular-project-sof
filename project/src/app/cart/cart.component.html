@@ -72,4 +72,26 @@
   <ng-template #emptyCart>
     <p>Your cart is empty.</p>
   </ng-template>
+
+  <!-- Unconfirmed Orders Section -->
+<div *ngIf="unconfirmedOrders.length > 0">
+  <h3>Unconfirmed Orders</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Order ID</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of unconfirmedOrders">
+        <td>{{ order.id }}</td>
+        <td>
+          <button class="btn btn-success" (click)="confirmOrder(order.id)">Confirm Delivery</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 </div>
