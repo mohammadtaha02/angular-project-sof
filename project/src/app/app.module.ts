@@ -39,6 +39,7 @@ import { CartComponent } from './cart/cart.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { PurchaseModalComponent } from './purchase-modal/purchase-modal.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 
 
@@ -69,6 +70,7 @@ const routes: Routes = [
   ]},
   { path: 'register', component: RegisterComponent},
   { path: 'subscribe', component: SubscribeComponent},
+  { path: 'contact-us', component: ContactUsComponent},
   { path: 'add-training', component: AddTrainingComponent },
   { path: 'update-training', component: UpdateTrainingComponent },
   { path: 'view-trainings', component: ViewTrainingsComponent },
@@ -121,6 +123,7 @@ const routes: Routes = [
     WorkoutDetailsComponent,
     CartComponent,
     PurchaseModalComponent,
+    ContactUsComponent,
   ],
   imports: [
     BrowserModule,
