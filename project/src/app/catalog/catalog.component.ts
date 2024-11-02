@@ -41,6 +41,10 @@ export class CatalogComponent implements OnInit {
   addToCart(product: Products): void {
     const userEmail = sessionStorage.getItem('currentUser');
     if (userEmail) {
+      if (product.selectedQuantity > product.quantity) {
+        console.error('Cannot add to cart, not enough stock available.');
+        return;
+      }
       this.cartService.addToCart(product.id, product.selectedQuantity, userEmail).subscribe(response => {
         console.log('Product added to cart:', response.message);
       }, error => {
@@ -49,5 +53,19 @@ export class CatalogComponent implements OnInit {
     } else {
       console.error('No user is logged in.');
     }
+  }
+  
+
+  // Update product stock
+  updateProductStock(productId: number, newStock: number): void {
+    this.productService.updateProductStock(productId, newStock).subscribe(response => {
+      console.log('Stock updated successfully', response);
+
+      // Update the product stock in the frontend as well
+      const productToUpdate = this.products.find(p => p.id === productId);
+      if (productToUpdate) {
+        productToUpdate.quantity = newStock;
+      }
+    });
   }
 }

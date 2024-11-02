@@ -1,35 +1,105 @@
 import { Injectable } from '@angular/core';
 import { SubscribeModel } from '../model/subscribe';
 import { WorkoutApiService } from './workout-api.service'; 
-import { Observable } from 'rxjs';
+import { forkJoin, map, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlanLogicService {
 
-  constructor(private workoutApiService: WorkoutApiService) {}
-  
-  generateDetailedWorkoutSchedule(
+  private apiUrl = 'https://wger.de/api/v2';
+
+  constructor(private workoutApiService: WorkoutApiService, private http: HttpClient) {}
+
+  generateCustomizedWorkoutSchedule(
     fitnessGoal: string,
-    fitnessLevel: string,
     activityLevel: string
   ): Observable<any> {
-    // Example category mapping based on fitness goal
-    let categoryId: number;
-
+    let categoryIds: { bigMuscles: number[]; smallMuscles: number[] } = {
+      bigMuscles: [],
+      smallMuscles: [],
+    };
+  
+    // Adjust the categories based on the fitness goal
     if (fitnessGoal === 'muscle_gain') {
-      categoryId = 8;  // ID for strength exercises
+      categoryIds = {
+        bigMuscles: [8, 9, 10], // Chest, Back, Legs
+        smallMuscles: [11, 12, 13], // Arms, Shoulders, Abs
+      };
     } else if (fitnessGoal === 'weight_loss') {
-      categoryId = 10;  // ID for cardio/weight loss exercises
-    } else {
-      categoryId = 11;  // Generic exercises
+      categoryIds = {
+        bigMuscles: [14, 15, 16], // Cardio categories
+        smallMuscles: [17, 18], // Mixed cardio and endurance
+      };
+    } else if (fitnessGoal === 'endurance') {
+      categoryIds = {
+        bigMuscles: [19], // Endurance workouts
+        smallMuscles: [20], // Additional endurance
+      };
     }
-
-    // Fetch workouts from API based on category
-    return this.workoutApiService.getWorkoutsByCategory(categoryId);
+  
+    // Determine weekly schedule based on activity level
+    let weeklySchedule: number[] = [];
+  
+    if (activityLevel === 'sedentary') {
+      weeklySchedule = [1, 0, 0, 1, 0, 0, 1];
+    } else if (activityLevel === 'lightly_active') {
+      weeklySchedule = [1, 0, 1, 0, 1, 0, 1];
+    } else if (activityLevel === 'active') {
+      weeklySchedule = [1, 1, 0, 1, 1, 0, 1];
+    } else if (activityLevel === 'very_active') {
+      weeklySchedule = [1, 1, 0, 1, 1, 0, 1];
+    }
+  
+    // Fetch workouts for both big and small muscle groups
+    const bigMuscleObservables = categoryIds.bigMuscles.map((id) =>
+      this.http.get<any>(`${this.apiUrl}/exercise/?category=${id}&language=2`)
+    );
+    const smallMuscleObservables = categoryIds.smallMuscles.map((id) =>
+      this.http.get<any>(`${this.apiUrl}/exercise/?category=${id}&language=2`)
+    );
+  
+    return forkJoin([...bigMuscleObservables, ...smallMuscleObservables]).pipe(
+      map((results) => {
+  
+        // Flatten the results to extract the workout details
+        const bigMuscleWorkouts = results
+          .slice(0, categoryIds.bigMuscles.length)
+          .flatMap((result) => result.results);
+        const smallMuscleWorkouts = results
+          .slice(categoryIds.bigMuscles.length)
+          .flatMap((result) => result.results);
+          
+        // Structure workouts by week based on schedule
+        const weeklyPlan = weeklySchedule.map((isWorkoutDay, index) => {
+          if (isWorkoutDay) {
+            return {
+              day: `Workout Day ${index + 1}`,
+              bigMuscleExercises: this.pickRandomExercises(bigMuscleWorkouts, 3),
+              smallMuscleExercises: this.pickRandomExercises(smallMuscleWorkouts, 2),
+            };
+          } else {
+            return {
+              day: `Rest Day ${index + 1}`,
+              message: 'Take rest and let your muscles recover.',
+            };
+          }
+        });
+  
+  
+        return weeklyPlan;
+      })
+    );
   }
+  
 
+  private pickRandomExercises(workouts: any[], count: number): any[] {
+    const shuffled = workouts.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+  }
+  
   // 1. Group by age
   groupByAge(age: number): string {
     if (age >= 12 && age <= 16) {
@@ -197,9 +267,9 @@ export class PlanLogicService {
     }  else if (activityLevel === 'lightly_active') {
       workoutDaysPattern = [1, 0, 1, 0, 1, 0, 1]; // 4 workout days, balanced rest
     }else if (activityLevel === 'active') {
-      workoutDaysPattern = [1, 1, 0, 1, 1, 1, 0]; // 5 workout days
+      workoutDaysPattern = [1, 1, 0, 1, 1, 0, 1]; // 5 workout days
     } else if (activityLevel === 'very_active') {
-      workoutDaysPattern = [1, 1, 1, 0, 1, 1, 1]; // 6 workout days
+      workoutDaysPattern = [1, 1, 0, 1, 1, 0, 1]; // 6 workout days
     }
     
   
