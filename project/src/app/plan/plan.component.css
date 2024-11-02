@@ -1,0 +1,25 @@
+.plan-container {
+    margin: 20px;
+  }
+  
+  .workout-plan-list {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+  
+  .workout-schedule-table {
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .workout-schedule-table th, .workout-schedule-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  .workout-schedule-table th {
+    background-color: #f4f4f4;
+    text-align: left;
+  }
+  

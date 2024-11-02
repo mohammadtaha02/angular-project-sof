@@ -4,6 +4,7 @@ import { UsersService } from '../services/users.service';
 import { PurchaseService } from '../services/purchase.service'; // Import PurchaseService
 import { Cart } from '../model/cart';
 import { Purchase, PurchaseItem } from '../model/purchase';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-cart',
@@ -12,16 +13,42 @@ import { Purchase, PurchaseItem } from '../model/purchase';
 })
 export class CartComponent implements OnInit {
   cartItems: Cart[] = [];
+  purchaseId: number | null = null;  
+  purchaseConfirmed: boolean = false;
+  unconfirmedOrders: any[] = [];
 
-  // Inject PurchaseService into the constructor
   constructor(
     private cartService: CartService, 
     private userService: UsersService,
-    private purchaseService: PurchaseService
+    private purchaseService: PurchaseService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
     this.loadCartItems();
+    this.loadUnconfirmedOrders();
+  }
+
+  loadUnconfirmedOrders(): void {
+    const userEmail = sessionStorage.getItem('currentUser');  // Get the user's email from session storage
+    if (!userEmail) {
+        console.error('No user is logged in.');
+        return;
+    }
+  
+    // Call the backend to get unconfirmed orders
+    this.purchaseService.getUnconfirmedOrders(userEmail).subscribe({
+      next: (response: any) => {
+        if (response.status === 'success') {
+          this.unconfirmedOrders = response.unconfirmedOrders;  // Store unconfirmed orders
+        } else {
+          console.error(response.message);
+        }
+      },
+      error: (error: any) => {
+        console.error('Error fetching unconfirmed orders:', error);
+      }
+    });
   }
 
   loadCartItems(): void {
@@ -78,24 +105,72 @@ export class CartComponent implements OnInit {
         console.error('No user is logged in.');
         return;
     }
-
-    // Prepare the purchase items
+  
     const purchaseItems = this.cartItems.map(item => new PurchaseItem(item.product_id, item.quantity, item.total_price));
-    
-    // Create the purchase object with the email instead of userId
+  
     const purchase = {
         userEmail: userEmail,
         purchaseItems: purchaseItems,
         totalPrice: this.getTotalPrice()
     };
-
-    // Call the backend service to save the purchase
+  
     this.purchaseService.savePurchase(purchase).subscribe({
         next: (response: any) => {
-            console.log('Purchase successful', response);
-            this.clearCart(); // Optionally clear the cart after successful purchase
+            console.log('Purchase successful:', response);
+  
+            this.purchaseId = response.purchaseId;
+            this.purchaseConfirmed = true;
+
+            alert('Purchase confirmed! Check your email for details.');
+            this.clearCart();
         },
-        error: (error: any) => console.error('Purchase failed', error)
+        error: (error: any) => {
+            console.error('Purchase failed', error);
+            alert('Purchase failed. Please try again.');
+        }
+    });
+    this.modalService.dismissAll();
+
+    // Use a small delay to ensure the modal is fully dismissed before cleaning up
+    setTimeout(() => {
+      // Remove any lingering modal backdrops
+      const backdrops = document.getElementsByClassName('modal-backdrop');
+      while (backdrops.length > 0) {
+        backdrops[0].parentNode?.removeChild(backdrops[0]);
+      }
+  
+      // Remove 'modal-open' class from body, which disables scrolling
+      document.body.classList.remove('modal-open');
+      document.body.style.overflow = ''; // Ensure scrolling is enabled
+  
+    }, 3000);
+  }
+  
+  
+
+  confirmOrder(purchaseId: number) {
+    const userEmail = sessionStorage.getItem('currentUser');  // Get the current user's email
+    if (!userEmail || !purchaseId) {
+        console.error('No user is logged in or purchase ID is missing.');
+        return;
+    }
+  
+    // Send the purchaseId and userEmail to the backend to confirm the order
+    this.purchaseService.confirmOrder(purchaseId, userEmail).subscribe({
+        next: (response: any) => {
+            console.log('Order confirmation successful:', response);
+            alert('Order confirmed as received.');
+  
+            // Remove the confirmed order from the list
+            this.unconfirmedOrders = this.unconfirmedOrders.filter(order => order.id !== purchaseId);
+        },
+        error: (error: any) => {
+            console.error('Order confirmation failed', error);
+            alert('Order confirmation failed. Please try again.');
+        }
     });
   }
+  
+  
+  
 }
