@@ -31,7 +31,9 @@ import { WorkoutDetailsComponent } from './workout-details/workout-details.compo
 import { CartComponent } from './cart/cart.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
-import { PurchaseModalComponent } from './purchase-modal/purchase-modal.component';
+import { PlanComponent } from './plan/plan.component';
+import { ActualWorkoutsComponent } from './actual-workouts/actual-workouts.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 
 
@@ -111,7 +113,7 @@ const routes: Routes = [
     WorkoutListComponent,
     WorkoutDetailsComponent,
     CartComponent,
-    PurchaseModalComponent,
+    ContactUsComponent,
   ],
   imports: [
     BrowserModule,

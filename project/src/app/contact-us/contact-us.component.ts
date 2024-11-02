@@ -12,6 +12,7 @@ export class ContactUsComponent {
     phone: '',
     message: ''
   };
+  
 
   onSubmit() {
     // לוגיקה לטיפול בהודעה או שליחה לשרת
