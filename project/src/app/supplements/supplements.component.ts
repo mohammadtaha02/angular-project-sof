@@ -9,39 +9,45 @@ import { Products } from '../model/products';
 })
 export class SupplementsComponent implements OnInit {
   supplements: Products[] = [];
-<<<<<<< Updated upstream
-=======
-  supplementCategories: any;
+  supplementCategories: any[] = [];
   selectedSupplement: Products | null = null;
->>>>>>> Stashed changes
 
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-<<<<<<< Updated upstream
-    this.productService.getSupplements().subscribe((data: Products[]) => {
-      this.supplements = data;
-    });
-  }
-=======
+    // Load all supplements
     this.loadSupplements();
   }
 
+  // Function to load all supplements and group them by flavor
   loadSupplements(): void {
-    this.productService.getProductsByType('supplement').subscribe(data => {
-      // קיבוץ המוצרים לפי טעמים
+    this.productService.filterProductsByCategory('supplement').subscribe((data: Products[]) => {
+      this.supplements = data;
+      // Group products by flavor or category (assuming you want to group by a certain property)
       this.supplementCategories = this.groupByFlavor(data);
     });
   }
 
+  // Group supplements by their flavor or other property
   groupByFlavor(supplements: Products[]): any[] {
     const categories = new Map<string, any>();
+
+    supplements.forEach((supplement) => {
+      const flavor = supplement.category; // Use the appropriate property to group, e.g., 'flavor' or 'category'
+      if (!categories.has(flavor)) {
+        categories.set(flavor, {
+          flavor: flavor,
+          items: []
+        });
+      }
+      categories.get(flavor).items.push(supplement);
+    });
 
     return Array.from(categories.values());
   }
 
+  // Set the selected supplement to display more details
   showSupplement(supplement: Products): void {
     this.selectedSupplement = supplement;
   }
->>>>>>> Stashed changes
 }
