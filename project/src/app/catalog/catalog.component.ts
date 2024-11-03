@@ -47,6 +47,7 @@ export class CatalogComponent implements OnInit {
       }
       this.cartService.addToCart(product.id, product.selectedQuantity, userEmail).subscribe(response => {
         console.log('Product added to cart:', response.message);
+        alert('Product added to cart');
       }, error => {
         console.error('Error adding product to cart:', error);
       });
