@@ -1,5 +1,5 @@
 
-export class Movie {
+export class Supplement {
   getMovies() {
     throw new Error('Method not implemented.')
   }

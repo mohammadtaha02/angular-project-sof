@@ -1,6 +1,6 @@
 import { Component, OnInit , Injector} from '@angular/core';
-import { Movie } from '../model/movie';
-import { MoviesService } from '../services/movies.service';
+import { Supplement } from '../model/supplements';
+import { SupplementsService } from '../services/supplements.service';
 
 @Component({
   selector: 'app-home',
@@ -9,11 +9,11 @@ import { MoviesService } from '../services/movies.service';
 })
 
 export class HomeComponent implements OnInit {
-  movie : Movie [] = [] 
+  movie : Supplement [] = [] 
   constructor(private injector: Injector) {}
 
   ngOnInit(): void {
-    const moviesService = this.injector.get(MoviesService);
-    this.movie = moviesService.getMovies();
+    const moviesService = this.injector.get(SupplementsService);
+    this.movie = moviesService.getSupplements();
   }
 }
