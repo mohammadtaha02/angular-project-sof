@@ -6,12 +6,12 @@
     <h3>Workouts</h3>
     <div *ngFor="let workout of workouts" class="card mb-3 shadow-sm">
       <div class="card-header bg-primary text-white">
-        <h4>{{ workout.title }}</h4>
+        <h4>{{ workout.title }} - {{ workout.day }}</h4>
       </div>
       <div class="card-body">
         <p><strong>Muscle Group:</strong> {{ workout.muscle_group }}</p>
+        <p><strong>Details:</strong> {{ workout.description }}</p>
         <p><strong>Exercises:</strong> {{ workout.exercises }}</p>
-        <a [routerLink]="['/workouts', workout.id]" class="btn btn-success mt-3">View Details</a>
       </div>
     </div>
   </div>
