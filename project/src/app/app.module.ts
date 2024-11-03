@@ -116,6 +116,7 @@ const routes: Routes = [
     CartComponent,
     ContactUsComponent,
     PlanComponent,
+    ActualWorkoutsComponent,
   ],
   imports: [
     BrowserModule,
