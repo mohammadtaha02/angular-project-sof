@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
@@ -92,6 +93,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
+    PlanComponent,
     NavbarComponent,
     FooterComponent,
     AboutComponent,
@@ -115,7 +117,11 @@ const routes: Routes = [
     WorkoutDetailsComponent,
     CartComponent,
     ContactUsComponent,
+<<<<<<< Updated upstream
     PlanComponent,
+=======
+    ActualWorkoutsComponent
+>>>>>>> Stashed changes
   ],
   imports: [
     BrowserModule,
