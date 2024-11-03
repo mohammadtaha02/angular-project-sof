@@ -1,5 +1,11 @@
+<<<<<<< Updated upstream
 import { Component, Input, OnChanges } from '@angular/core';
 import { ProductService } from '../services/product.service';
+=======
+import { Component, Input, OnInit } from '@angular/core';
+import { ProductService } from '../services/product.service';
+import { Products } from '../model/products';
+>>>>>>> Stashed changes
 
 @Component({
   selector: 'app-products',
@@ -12,6 +18,7 @@ export class ProductsComponent implements OnChanges {
   filteredProducts: any[] = [];
   isLoggedIn!: boolean;
 
+<<<<<<< Updated upstream
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
@@ -37,6 +44,30 @@ export class ProductsComponent implements OnChanges {
     } else {
       this.filteredProducts = this.products.filter(product => 
         product.name.toLowerCase().includes(this.categoryToShow.toLowerCase()));
+=======
+export class ProductsComponent implements OnInit {
+  toShow: Products[] = [];
+
+  constructor(private productService: ProductService) {}
+
+  ngOnInit(): void {
+    this.loadProducts('ALL'); // טוען את כל המוצרים כברירת מחדל
+  }
+
+  @Input() set categoryToShow(category: string) {
+    this.loadProducts(category);
+  }
+
+  loadProducts(category: string): void {
+    if (category === 'ALL') {
+      this.productService.getProductsByType('equipment').subscribe(data => {
+        this.toShow = data;
+      });
+    } else {
+      this.productService.getProductsByType(category).subscribe(data => {
+        this.toShow = data;
+      });
+>>>>>>> Stashed changes
     }
   }
 }

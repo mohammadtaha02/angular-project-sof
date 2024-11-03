@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
@@ -34,7 +35,6 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { PlanComponent } from './plan/plan.component';
 import { ActualWorkoutsComponent } from './actual-workouts/actual-workouts.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
-import { CommonModule } from '@angular/common';
 
 
 
@@ -92,6 +92,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
+    PlanComponent,
     NavbarComponent,
     FooterComponent,
     AboutComponent,
@@ -116,7 +117,7 @@ const routes: Routes = [
     CartComponent,
     ContactUsComponent,
     PlanComponent,
-    ActualWorkoutsComponent,
+    ActualWorkoutsComponent
   ],
   imports: [
     BrowserModule,
@@ -135,3 +136,4 @@ const routes: Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
