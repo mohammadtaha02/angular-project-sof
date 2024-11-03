@@ -1,18 +1,20 @@
-<div class="about-container">
-  <ul>
-    <li>About Us Page</li>
-    <li>We arrange and prepare courses for undergraduate students</li>
-    <button (click)="DarkWhite()"> Dark </button>
-  </ul>
-  <table  [ngClass]="{'dark-mode': darkMode}">
-    <tr>
-      <th><img [src]="img1" alt="Member 1" class="circular-image"></th>
-      <th><img [src]="img2" alt="Member 2" class="circular-image"></th>
-    </tr>
-    <tr>
-      <th class="thet" ><p>{{Name1 }} - {{ ID1 }}</p></th>
-      <th class="thet"><p>{{ Name2 }} - {{ ID2 }}</p></th>
-    </tr>
-  </table>
-
+<div style="text-align: center; padding: 20px; background-color: rgba(255, 255, 255, 0.9);">
+  <h1>About Us</h1>
+  <p style="font-size: 18px;">Welcome to our fitness management website! Here, we strive to help you achieve your fitness goals with tailored training programs and nutritional guidance.</p>
+  
+  <div style="display: flex; justify-content: center; margin-top: 30px;">
+    <div style="margin: 0 20px;">
+      <img src="assets/pic1.jpg" alt="My Image" style="width: 200px; height: auto; border-radius: 10px;">
+      <h3 style="color: black;">Mhmd Taha</h3>
+      <p style="color: black;">Food table trainer</p>
+      <p style="font-size: 14px;">A brief description about yourself. Include your experience, qualifications, and passion for fitness.</p>
+    </div>
+    
+    <div style="margin: 0 20px;">
+      <img src="assets/pic2.jpg" alt="Coach Image" style="width: 200px; height: auto; border-radius: 10px;">
+      <h3 style="color: black;">Mhmd Hsn</h3>
+      <p style="color: black;">Training coach</p>
+      <p style="font-size: 14px;">A brief description about the coach. Include their background and training philosophy.</p>
+    </div>
+  </div>
 </div>

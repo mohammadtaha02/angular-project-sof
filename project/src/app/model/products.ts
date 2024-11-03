@@ -5,17 +5,17 @@ export class Products{
     description: string;
     price: number;
     category: string;
-    stock: number;
+    quantity!: number;
     image!: string;
-    selectedQuantity !: number; // Add this line
+    selectedQuantity !: number;
 
-    constructor(id: number, name: string, description: string, price: number, category: string, stock: number, selectedQuantity:number){
+    constructor(id: number, name: string, description: string, price: number, category: string, quantity: number, selectedQuantity:number){
         this.id = id
         this.name = name
         this.description = description
         this.price = price
         this.category = category
-        this.stock = stock
+        this.quantity = quantity
         this.selectedQuantity = selectedQuantity
 =======
 export class Products {
@@ -76,11 +76,20 @@ export class Products {
         this.quantity = quantity;
     }
 
+<<<<<<< HEAD
     getImage(): string {
         return this.image;
     }
 
     setImage(image: string) {
         this.image = image;
+=======
+    getStock(): number {
+        return this.quantity;
+    }
+
+    setStock(quantity: number) {
+        this.quantity = quantity;
+>>>>>>> 93f2474a4cf9f21c1a89aa7547927d92feab5756
     }
 }

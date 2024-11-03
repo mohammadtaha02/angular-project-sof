@@ -35,5 +35,7 @@ export class ProductService {
   filterProductsByCategory(category: string): Observable<Products[]> {
     return this.http.get<Products[]>(`${this.baseUrl}/getProducts.php?category=${category}`);
   }
-  
+  updateProductStock(productId: number, stock: number): Observable<any> {
+    return this.http.post(`${this.baseUrl}/updateStock.php`, { productId, stock });
+  }
 }

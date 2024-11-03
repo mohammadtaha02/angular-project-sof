@@ -1,0 +1,122 @@
+/* Background styling */
+.subscribe-background {
+    background-image: url('/path/to/your/image.png'); /* תחליף את זה עם הנתיב הנכון לתמונת הרקע */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 140vh;
+    padding: 20px;
+  }
+  
+  /* Form styling */
+  .subscribe-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .subscribe-form {
+    background-color: rgba(255, 255, 255, 0.2); /* רקע לבן שקוף */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 100%;
+    backdrop-filter: blur(10px); /* אפקט טשטוש */
+    border: 1px solid black;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    border-radius: 0;
+    background-color: transparent;
+    font-size: 1em;
+    transition: border-color 0.3s;
+  }
+  
+  .form-control:focus {
+    outline: none;
+    border-bottom-color: #007bff;
+  }
+  
+  .form-group label {
+    font-weight: bold;
+    font-size: 0.85em;
+    color: black;
+  }
+  
+  .form-group.row {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .col-half {
+    width: 48%;
+  }
+  
+  /* Button styling */
+  .btn-primary {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+  }
+  
+  .btn-primary:hover {
+    background: linear-gradient(90deg, #0056b3, #003f8a);
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  /* Animation for floating elements in background */
+  .subscribe-background::before,
+  .subscribe-background::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(200, 200, 255, 0.2);
+    animation: float 5s infinite ease-in-out;
+    z-index: -1;
+  }
+  /*
+  .subscribe-background::before {
+    width: 200px;
+    height: 200px;
+    top: 10%;
+    left: 10%;
+  }
+  
+  .subscribe-background::after {
+    width: 150px;
+    height: 150px;
+    bottom: 15%;
+    right: 10%;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  */

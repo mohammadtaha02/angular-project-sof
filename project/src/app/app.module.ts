@@ -31,9 +31,10 @@ import { WorkoutDetailsComponent } from './workout-details/workout-details.compo
 import { CartComponent } from './cart/cart.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
-import { ProgressComponent } from './progress/progress.component';
 import { PlanComponent } from './plan/plan.component';
 import { ActualWorkoutsComponent } from './actual-workouts/actual-workouts.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -75,6 +76,7 @@ const routes: Routes = [
     ]},
   { path: 'register', component: RegisterComponent},
   { path: 'subscribe', component: SubscribeComponent},
+  { path: 'contact-us', component: ContactUsComponent},
   { path: 'add-training', component: AddTrainingComponent },
   { path: 'view-trainings', component: ViewTrainingsComponent },
   { path: 'add-product', component: AddProductComponent },
@@ -112,9 +114,8 @@ const routes: Routes = [
     WorkoutListComponent,
     WorkoutDetailsComponent,
     CartComponent,
-    ProgressComponent,
+    ContactUsComponent,
     PlanComponent,
-    ActualWorkoutsComponent,
   ],
   imports: [
     BrowserModule,
@@ -125,7 +126,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   exports: [RouterModule],
   providers: [],

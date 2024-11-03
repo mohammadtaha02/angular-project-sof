@@ -1,0 +1,46 @@
+.container {
+  max-width: 900px;
+  margin: auto;
+}
+
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 15px;
+}
+
+.day-title {
+  font-size: 1.5rem;
+}
+
+.workout-exercise {
+  background-color: #f9f9f9;
+  border-radius: 5px;
+}
+
+.workout-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-top: 10px;
+  color: #333;
+}
+
+.workout-description {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.workout-details {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.rest-day {
+  padding: 15px 0;
+  font-size: 1.1rem;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+}

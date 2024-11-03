@@ -10,6 +10,9 @@ export class SubscribeModel {
   fitness_goal: string;  
   fitness_level: string; 
   activity_level: string;
+  card_number: any;
+  cvv: any;
+  expiration_date: any;
 
   constructor(
     userEmail: string,
