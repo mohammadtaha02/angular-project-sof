@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 export class Products{
     id: number;
     name: string;
@@ -16,7 +17,25 @@ export class Products{
         this.category = category
         this.stock = stock
         this.selectedQuantity = selectedQuantity
+=======
+export class Products {
+    public id: number;
+    public name: string;
+    public description: string;
+    public price: number;
+    public quantity: number;
+    public image: string;
+
+    constructor(id: number, name: string, description: string, price: number, quantity: number, image: string) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.quantity = quantity;
+        this.image = image;
+>>>>>>> Stashed changes
     }
+
     getId(): number {
         return this.id;
     }
@@ -49,19 +68,19 @@ export class Products{
         this.price = price;
     }
 
-    getCategory(): string {
-        return this.category;
+    getQuantity(): number {
+        return this.quantity;
     }
 
-    setCategory(category: string) {
-        this.category = category;
+    setQuantity(quantity: number) {
+        this.quantity = quantity;
     }
 
-    getStock(): number {
-        return this.stock;
+    getImage(): string {
+        return this.image;
     }
 
-    setStock(stock: number) {
-        this.stock = stock;
+    setImage(image: string) {
+        this.image = image;
     }
 }
