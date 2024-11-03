@@ -35,7 +35,6 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { PlanComponent } from './plan/plan.component';
 import { ActualWorkoutsComponent } from './actual-workouts/actual-workouts.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
-import { CommonModule } from '@angular/common';
 
 
 
@@ -117,11 +116,8 @@ const routes: Routes = [
     WorkoutDetailsComponent,
     CartComponent,
     ContactUsComponent,
-<<<<<<< Updated upstream
     PlanComponent,
-=======
     ActualWorkoutsComponent
->>>>>>> Stashed changes
   ],
   imports: [
     BrowserModule,
