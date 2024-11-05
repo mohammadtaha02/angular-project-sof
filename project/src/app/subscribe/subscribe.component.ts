@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class SubscribeComponent implements OnInit {
   subscribeModel: SubscribeModel;
   isSubscribed: boolean = false;
+  loggedIn: boolean = false;
 
   constructor(private subscribeService: SubscribeService, private router: Router) {
     // Initialize the subscribeModel with user email from sessionStorage
@@ -21,34 +22,41 @@ export class SubscribeComponent implements OnInit {
   ngOnInit(): void {
     const userEmail = sessionStorage.getItem('currentUser');
     if (userEmail) {
+      this.loggedIn = true; // Set loggedIn to true if user is logged in
       this.subscribeService.getSubscriber(userEmail).subscribe(subscriberData => {
         if (subscriberData && !subscriberData.error) {
           this.isSubscribed = true;
         }
       });
+    } else {
+      this.loggedIn = false; // Set loggedIn to false if no user is logged in
     }
   }
 
-  onSubmit(): void {
-    if (this.validateForm()) {
-      this.subscribeService.subscribeUser(this.subscribeModel).subscribe({
-        next: (response: any) => {
-          if (response.status === 'success') {
-            alert('Subscription successful!');
-            this.isSubscribed = true;
-          } else {
-            alert('Subscription failed: ' + response.message);
-          }
-        },
-        error: (error: any) => {
-          console.error('Error while subscribing:', error);
-          alert('An error occurred while subscribing. Please try again later.');
-        }
-      });
-    } else {
+  onSubmit(subscribeForm: any): void {
+    console.log('Form submission attempted');
+    if (subscribeForm.invalid) {
       alert('Please fill in all required fields.');
+      return;
     }
+    
+    // Proceed with subscription if the form is valid
+    this.subscribeService.subscribeUser(this.subscribeModel).subscribe({
+      next: (response: any) => {
+        if (response.status === 'success') {
+          alert('Subscription successful!');
+          this.isSubscribed = true;
+        } else {
+          alert('Subscription failed: ' + response.message);
+        }
+      },
+      error: (error: any) => {
+        console.error('Error while subscribing:', error);
+        alert('An error occurred while subscribing. Please try again later.');
+      }
+    });
   }
+   
 
   validateForm(): boolean {
     return (
@@ -61,6 +69,13 @@ export class SubscribeComponent implements OnInit {
       this.subscribeModel.activity_level.trim() !== ''
     );
   }
+
+  onInvalidForm(subscribeForm: any): void {
+    if (!subscribeForm.valid) {
+      alert('Please fill in all required fields.');
+    }
+  }
+  
 
   goToWorkoutPlan(): void {
     this.router.navigate(['/profile/workout-plan']);

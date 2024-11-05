@@ -47,4 +47,8 @@ export class NavbarComponent implements OnInit {
     this.loggedIn = false;
     this.userService.logout();
   }
+  isAdmin(): boolean {
+    return sessionStorage.getItem('isAdmin') === 'true';
+  }
+  
 }

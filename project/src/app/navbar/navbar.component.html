@@ -18,7 +18,8 @@
         <ul ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <li><a class="dropdown-item" [routerLink]="['/profile/user']">User details</a></li>
           <li *ngIf="isSubscribed"><a class="dropdown-item" [routerLink]="['/profile/workout-plan']">Workout Plan & Schedule</a></li>
-          <li *ngIf="isSubscribed"><a class="dropdown-item" [routerLink]="['/profile/actual-workouts']">Actual Workouts</a></li>        
+          <li *ngIf="isSubscribed"><a class="dropdown-item" [routerLink]="['/profile/actual-workouts']">Actual Workouts</a></li>
+          <li *ngIf="isAdmin()"><a class="dropdown-item" [routerLink]="['/profile/admin/admin-dashboard']">Admin Dashboard</a></li>
           <li><a class="dropdown-item" (click)="onSubmit()">Logout</a></li>
         </ul>
       </li>      

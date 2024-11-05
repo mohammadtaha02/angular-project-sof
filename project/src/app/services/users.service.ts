@@ -42,12 +42,15 @@ export class UsersService {
       .pipe(
         map(response => {
           if (response && response.email) {
+            // Convert `is_admin` from number (0 or 1) to a boolean
+            const isAdmin = response.is_admin == 1; // `true` if 1, otherwise `false`
             return new User(
               response.email,
               response.password,
               response.name,
               response.male,
-              new Date(response.birth_date)
+              new Date(response.birth_date),
+              isAdmin
             );
           }
           return null;
@@ -55,10 +58,11 @@ export class UsersService {
         catchError(() => of(null))
       );
   }
-
+  
 
   register(email: string, password: string, name: string, male: boolean, birthDate: Date) {
-    let user = new User(email, password, name, male, birthDate);
+    const isAdmin = false;
+    let user = new User(email, password, name, male, birthDate, isAdmin);
     this.addUser(user).subscribe((data) => {
       this.refreshUsers();
     });
@@ -71,5 +75,14 @@ export class UsersService {
   logout() {
     sessionStorage.removeItem('currentUser');
     this.router.navigateByUrl('profile/login');
+  }
+
+  // New methods for managing users
+  updateUser(user: User): Observable<any> {
+    return this.http.post(`${this.baseUrl}/updateUser.php`, user, { headers: this.headers });
+  }
+
+  deleteUser(userId: number): Observable<any> {
+    return this.http.post(`${this.baseUrl}/deleteUser.php`, { userId });
   }
 }

@@ -1,0 +1,59 @@
+<div class="container mt-5">
+  <h2>Manage Products</h2>
+
+  <form (ngSubmit)="saveProduct()" #productForm="ngForm">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" [(ngModel)]="newProduct.name" name="name" required>
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input type="text" class="form-control" id="description" [(ngModel)]="newProduct.description" name="description" required>
+    </div>
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input type="number" class="form-control" id="price" [(ngModel)]="newProduct.price" name="price" required>
+    </div>
+    <div class="form-group">
+      <label for="category">Category</label>
+      <input type="text" class="form-control" id="category" [(ngModel)]="newProduct.category" name="category" required>
+    </div>
+    <div class="form-group">
+      <label for="quantity">Quantity</label>
+      <input type="number" class="form-control" id="quantity" [(ngModel)]="newProduct.quantity" name="quantity" required>
+    </div>
+    <div class="form-group">
+      <label for="image">Image URL</label>
+      <input type="text" class="form-control" id="image" [(ngModel)]="newProduct.image" name="image" required>
+    </div>
+    <button type="submit" class="btn btn-primary">
+      {{ selectedProduct ? 'Update Product' : 'Add Product' }}
+    </button>
+    <button type="button" class="btn btn-secondary" *ngIf="selectedProduct" (click)="onCancelEdit()">Cancel</button>
+  </form>
+
+  <!-- table to manage existing products -->
+  <table class="table table-striped mt-5">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.quantity }}</td>
+        <td>
+          <button class="btn btn-warning btn-sm" (click)="editProduct(product)">Edit</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteProduct(product.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -13,10 +13,23 @@ export class SubscribeService {
   constructor(private http: HttpClient) { }
 
   subscribeUser(subscribeData: SubscribeModel): Observable<any> {
-    return this.http.post(`${this.apiUrl}/subscribe.php`, {subscribeData});
+    return this.http.post(`${this.apiUrl}/subscribe.php`, { subscribeData });
   }
+
   getSubscriber(email: string): Observable<any> {
     const params = new HttpParams().set('email', email);
     return this.http.get<any>(`${this.apiUrl}/getSubscriber.php`, { params });
+  }
+
+  getAllSubscribers(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/getAllSubscribers.php`);
+  }
+
+  deleteSubscriber(subscriberId: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/deleteSubscriber.php`, { subscriberId });
+  }
+
+  updateSubscriber(subscriber: SubscribeModel): Observable<any> {
+    return this.http.post(`${this.apiUrl}/updateSubscriber.php`, subscriber);
   }
 }

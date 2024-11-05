@@ -24,8 +24,12 @@ export class LoginComponent implements OnInit{
       const mail = this.loginForm.value.email;
       const password = this.loginForm.value.password;
       this.userService.exists(mail).subscribe(user => {
-        if (user != null && user.getPassword() == password) {
+        if (user != null && user.getPassword() === password) {
           sessionStorage.setItem('currentUser', user.getEmail());
+  
+          // Set the `isAdmin` value in sessionStorage based on `user.is_admin`
+          sessionStorage.setItem('isAdmin', user.is_admin ? 'true' : 'false');
+  
           this.userService.login(mail, password);
           this.router.navigateByUrl('profile/user');
         } else {
@@ -34,5 +38,6 @@ export class LoginComponent implements OnInit{
       });
     }
   }
+  
   
 }

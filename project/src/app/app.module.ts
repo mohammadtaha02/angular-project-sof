@@ -35,6 +35,10 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { PlanComponent } from './plan/plan.component';
 import { ActualWorkoutsComponent } from './actual-workouts/actual-workouts.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { ManageSubscribersComponent } from './manage-subscribers/manage-subscribers.component';
+import { ManageProductsComponent } from './manage-products/manage-products.component';
 
 
 
@@ -62,17 +66,37 @@ const routes: Routes = [
         component: UserDetailsComponent,
       },
       {
-        path: 'workout-plan',  // Add this route for Workout Plan & Schedule
+        path: 'workout-plan',
         component: PlanComponent
       },
       {
-        path: 'workouts',  // Future route for Actual Workouts
-        component: WorkoutComponent  // Placeholder until implemented
+        path: 'workouts',
+        component: WorkoutComponent
       },
       {
         path: 'actual-workouts', 
         component: ActualWorkoutsComponent 
-      }
+      },
+      { 
+        path: 'admin/login', 
+        component: LoginComponent 
+      },
+      { 
+        path: 'admin/admin-dashboard', 
+        component: AdminDashboardComponent 
+      },
+      { 
+        path: 'admin/manage-users', 
+        component: ManageUsersComponent 
+      },
+      { 
+        path: 'admin/manage-subscribers', 
+        component: ManageSubscribersComponent 
+      },
+      { 
+        path: 'admin/manage-products', 
+        component: ManageProductsComponent 
+      },
     ]},
   { path: 'register', component: RegisterComponent},
   { path: 'subscribe', component: SubscribeComponent},
@@ -117,7 +141,11 @@ const routes: Routes = [
     CartComponent,
     ContactUsComponent,
     PlanComponent,
-    ActualWorkoutsComponent
+    ActualWorkoutsComponent,
+    AdminDashboardComponent,
+    ManageUsersComponent,
+    ManageSubscribersComponent,
+    ManageProductsComponent
   ],
   imports: [
     BrowserModule,

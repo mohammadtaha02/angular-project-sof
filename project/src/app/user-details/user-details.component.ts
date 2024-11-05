@@ -31,8 +31,6 @@ export class UserDetailsComponent implements OnInit {
           this.email = '';
         }
       });
-      
-      
     } else {
       this.email = '';
     }

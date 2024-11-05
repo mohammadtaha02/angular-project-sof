@@ -15,16 +15,32 @@ export class ProductService {
   getProducts(): Observable<Products[]> {
     return this.http.get<Products[]>(`${this.baseUrl}/getProducts.php`);
   }
+
   getProductsByCategory(category: string): Observable<Products[]> {
     return this.http.get<Products[]>(`${this.baseUrl}/getProducts.php?category=${category}`);
   }
+
   getSupplements(): Observable<Products[]> {
     return this.http.get<Products[]>(`${this.baseUrl}/getProducts.php?category=supplements`);
   }
+
   filterProductsByCategory(category: string): Observable<Products[]> {
     return this.http.get<Products[]>(`${this.baseUrl}/getProducts.php?category=${category}`);
   }
+
   updateProductStock(productId: number, stock: number): Observable<any> {
     return this.http.post(`${this.baseUrl}/updateStock.php`, { productId, stock });
   }
+
+  addProduct(product: Products): Observable<any> {
+    return this.http.post(`${this.baseUrl}/addProduct.php`, product);
+  }
+
+  updateProduct(product: Products): Observable<any> {
+    return this.http.post(`${this.baseUrl}/updateProduct.php`, product);
+  }
+
+  deleteProduct(productId: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/deleteProduct.php?productId=${productId}`);
+  }  
 }

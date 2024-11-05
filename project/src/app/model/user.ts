@@ -1,12 +1,13 @@
 export class User {
-    private email: string;
-    private password: string;
-    private name: string;
-    private male: boolean;
-    private image: string;
-    private birthDate: Date;
+    email: string;
+    password: string;
+    name: string;
+    male: boolean;
+    image: string;
+    birthDate: Date;
+    is_admin: boolean;
 
-    constructor(email: string, password: string, name: string, male: boolean, birthDate: Date) {
+    constructor(email: string, password: string, name: string, male: boolean, birthDate: Date, is_admin: boolean) {
         this.email = email;
         this.password = password;
         this.name = name;
@@ -18,6 +19,7 @@ export class User {
             this.image ='https://clipart-library.com/2023/350-3508951_big-image-faceless-woman-clipart.png';
         }
         this.birthDate = birthDate;
+        this.is_admin = is_admin;
     }
 
     getEmail(): string {
@@ -66,5 +68,13 @@ export class User {
 
     setBirthDate(birthDate: Date) {
         this.birthDate = birthDate;
+    }
+
+    getIsAdmin(): boolean {
+        return this.is_admin;
+    }
+
+    setIsAdmin(is_admin: boolean) {
+        this.is_admin = is_admin;
     }
 }
