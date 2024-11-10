@@ -39,6 +39,8 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ManageSubscribersComponent } from './manage-subscribers/manage-subscribers.component';
 import { ManageProductsComponent } from './manage-products/manage-products.component';
+import { ManageOrdersComponent } from './manage-orders/manage-orders.component';
+import { PurchaseHistoryComponent } from './purchase-history/purchase-history.component';
 
 
 
@@ -97,6 +99,15 @@ const routes: Routes = [
         path: 'admin/manage-products', 
         component: ManageProductsComponent 
       },
+      {
+        path: 'admin/manage-orders',
+        component: ManageOrdersComponent
+      },
+      {
+        path: 'purchase-history',
+        component: PurchaseHistoryComponent
+      }
+      
     ]},
   { path: 'register', component: RegisterComponent},
   { path: 'subscribe', component: SubscribeComponent},
@@ -145,7 +156,9 @@ const routes: Routes = [
     AdminDashboardComponent,
     ManageUsersComponent,
     ManageSubscribersComponent,
-    ManageProductsComponent
+    ManageProductsComponent,
+    ManageOrdersComponent,
+    PurchaseHistoryComponent
   ],
   imports: [
     BrowserModule,

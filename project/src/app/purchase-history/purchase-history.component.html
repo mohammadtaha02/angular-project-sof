@@ -1,0 +1,22 @@
+<div class="container">
+    <h2>Purchase History</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Order Date</th>
+          <th>Total Price</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of purchaseHistory">
+          <td>{{ order.id }}</td>
+          <td>{{ order.purchase_date | date }}</td>
+          <td>{{ order.total_price | currency }}</td>
+          <td>{{ order.order_confirmed ? 'Delivered' : 'Pending' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

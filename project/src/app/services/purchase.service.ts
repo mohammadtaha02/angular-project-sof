@@ -20,5 +20,7 @@ export class PurchaseService {
   getUnconfirmedOrders(userEmail: string) {
     return this.http.post(`${this.baseUrl}/get-unconfirmed-orders.php`, { userEmail });
   }
-  
+  getPurchaseDetails(purchaseId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/getPurchaseDetails.php?purchase_id=${purchaseId}`);
+  }  
 }

@@ -1,104 +1,116 @@
-<div style="background-image: url('/assets/cart.jpg'); 
-            background-size: cover; 
-            background-position: center; 
-            background-repeat: no-repeat; 
-            height: 100vh; 
-            width: 100vw;"
->
-<div class="container">
-  <h2>Your Cart</h2>
+<div style="background-image: url('/assets/cart.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            width: 100vw;">
+  <div class="container">
+    <h2>Your Cart</h2>
 
-  <div *ngIf="cartItems.length > 0; else emptyCart">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th scope="col">Product Image</th>
-          <th scope="col">Product</th>
-          <th scope="col">Quantity</th>
-          <th scope="col">Total Price</th>
-          <th scope="col">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of cartItems">
-          <td><img [src]="item.product_image" alt="{{ item.product_name }}" class="img-thumbnail" width="50"></td>
-          <td>{{ item.product_name }}</td>
-          <td>
-            <input type="number" [(ngModel)]="item.quantity" (change)="updateQuantity(item)" min="1" class="form-control">
-          </td>
-          <td>{{ item.total_price | currency }}</td>
-          <td>
-            <button (click)="removeFromCart(item.cart_id)" class="btn btn-danger">Remove</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <h3>Total: {{ getTotalPrice() | currency }}</h3>
+    <div *ngIf="cartItems.length > 0; else emptyCart">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Product Image</th>
+            <th scope="col">Product</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total Price</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of cartItems">
+            <td><img [src]="item.product_image" alt="{{ item.product_name }}" class="img-thumbnail" width="50"></td>
+            <td>{{ item.product_name }}</td>
+            <td>
+              <input 
+                type="number" 
+                [(ngModel)]="item.quantity" 
+                (blur)="updateQuantity(item)" 
+                min="1" 
+                class="form-control"
+                >
+            </td>
+            <td>{{ item.total_price | currency }}</td>
+            <td>
+              <button (click)="removeFromCart(item.cart_id)" class="btn btn-danger">Remove</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>Total: {{ getTotalPrice() | currency }}</h3>
 
-    <!-- Button to open modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#purchaseModal">
-      Review Purchase
-    </button>
+      <!-- Button to open modal -->
+      <button type="button" class="btn btn-primary" (click)="openPurchaseModal(purchaseModal)">
+        Review Purchase
+      </button>
 
-    <!-- Modal for Purchase Review -->
-    <div class="modal fade" id="purchaseModal" tabindex="-1" aria-labelledby="purchaseModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="purchaseModalLabel">Review Your Purchase</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Product</th>
-                  <th scope="col">Quantity</th>
-                  <th scope="col">Total Price</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let item of cartItems">
-                  <td>{{ item.product_name }}</td>
-                  <td>{{ item.quantity }}</td>
-                  <td>{{ item.total_price | currency }}</td>
-                </tr>
-              </tbody>
-            </table>
-            <h4>Total: {{ getTotalPrice() | currency }}</h4>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-success" (click)="confirmPurchase()">Confirm Purchase</button>
-          </div>
+      <!-- Modal for Purchase Review -->
+      <ng-template #purchaseModal let-modal>
+        <div class="modal-header">
+          <h5 class="modal-title">Review Your Purchase</h5>
+          <button type="button" class="btn-close" (click)="closePurchaseModal()" aria-label="Close"></button>
         </div>
+        <div class="modal-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of cartItems">
+                <td>{{ item.product_name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.total_price | currency }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <h4>Total: {{ getTotalPrice() | currency }}</h4>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closePurchaseModal()">Cancel</button>
+          <button type="button" class="btn btn-success" (click)="confirmPurchase()">Confirm Purchase</button>
+        </div>
+      </ng-template>
+    </div>
+
+    <ng-template #emptyCart>
+      <h5>Your cart is empty.</h5>
+    </ng-template>
+
+    <!-- Unconfirmed Orders Section -->
+    <div *ngIf="unconfirmedOrders.length > 0">
+      <h3>Unconfirmed Orders</h3>
+      
+      <!-- Loop through each unconfirmed order -->
+      <div *ngFor="let order of unconfirmedOrders" class="order-container mt-3 p-3 border rounded">
+        <h4>Order ID: {{ order.id }}</h4>
+        
+        <!-- Order Details -->
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Product Name</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Loop through the details of each order -->
+            <tr *ngFor="let detail of order.details">
+              <td>{{ detail.product_name }}</td>
+              <td>{{ detail.quantity }}</td>
+              <td>{{ detail.price | currency }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Confirm Delivery Button -->
+        <button class="btn btn-success" (click)="confirmOrder(order.id)">Confirm Delivery</button>
       </div>
     </div>
   </div>
-
-  <ng-template #emptyCart>
-    <h5>Your cart is empty.</h5>
-  </ng-template>
-
-  <!-- Unconfirmed Orders Section -->
-<div *ngIf="unconfirmedOrders.length > 0">
-  <h3>Unconfirmed Orders</h3>
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Order ID</th>
-        <th scope="col">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let order of unconfirmedOrders">
-        <td>{{ order.id }}</td>
-        <td>
-          <button class="btn btn-success" (click)="confirmOrder(order.id)">Confirm Delivery</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
 </div>

@@ -321,7 +321,7 @@ export class PlanLogicService {
     if (ageGroup === 'adolescent') {
       workoutFocus = 'Bodyweight exercises';
     } else if (bmi >= 30) {
-      workoutFocus = 'Low-impact strength training';  // Adjust for overweight/obese users
+      workoutFocus = 'Low-impact strength training';
     }
 
     const muscleGroups = ['Chest', 'Back', 'Legs', 'Shoulders', 'Arms'];
@@ -335,7 +335,7 @@ export class PlanLogicService {
     if (ageGroup === 'senior') {
       workoutFocus = 'Low-impact cardio';
     } else if (gender === 'female') {
-      workoutFocus = 'Mixed cardio and toning';  // Custom for females
+      workoutFocus = 'Mixed cardio and toning';
     }
 
     const workouts = [`${workoutFocus}`];
