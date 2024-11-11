@@ -41,6 +41,10 @@ export class ProductService {
   }
 
   deleteProduct(productId: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/deleteProduct.php?productId=${productId}`);
-  }  
+    return this.http.post(`${this.baseUrl}/softDeleteProduct.php`, { product_id: productId });
+  }    
+  editProduct(product: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/editProduct.php`, product);
+  }
+  
 }

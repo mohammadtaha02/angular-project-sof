@@ -17,25 +17,25 @@ export class PlanComponent implements OnInit {
 
   constructor(
     private planLogicService: PlanLogicService,
-    private planService: PlanService  // Service to fetch the current subscriber's data
+    private planService: PlanService
   ) {}
 
   ngOnInit(): void {
-    // Get current user's email from sessionStorage
+    // get current user's email from sessionStorage
     const currentUserEmail = sessionStorage.getItem('currentUser');
 
     if (currentUserEmail) {
-      // Fetch subscriber data using the email
+      // fetch subscriber data using the email
       this.planService.getSubscriberByEmail(currentUserEmail).subscribe(subscriberData => {
         this.subscriber = subscriberData;
 
-        // Generate the high-level workout plan
+        // henerate the high-level workout plan
         this.workoutPlan = this.planLogicService.generateWorkoutPlan(this.subscriber);
 
         // nutrition; is yet to be implemented correctly
         this.nutritionPlan = this.planLogicService.generateNutritionPlan(this.subscriber);
 
-        // Generate the weekly workout schedule based on subscriber data
+        // generate the weekly workout schedule based on subscriber data
         this.workoutSchedule = this.planLogicService.generateWorkoutSchedule(this.subscriber);
       });
     } else {

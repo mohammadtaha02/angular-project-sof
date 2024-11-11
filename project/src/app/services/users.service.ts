@@ -77,12 +77,18 @@ export class UsersService {
     this.router.navigateByUrl('profile/login');
   }
 
-  // New methods for managing users
-  updateUser(user: User): Observable<any> {
-    return this.http.post(`${this.baseUrl}/updateUser.php`, user, { headers: this.headers });
-  }
+  updateUser(user: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/updateUser.php`, user);
+  }  
 
   deleteUser(userId: number): Observable<any> {
-    return this.http.post(`${this.baseUrl}/deleteUser.php`, { userId });
+    return this.http.delete(`${this.baseUrl}/deleteUser.php`, {
+      body: { id: userId }
+    });
+  } 
+  
+  softDeleteUser(userId: number): Observable<any> {
+    return this.http.post(`${this.baseUrl}/softDeleteUser.php`, { id: userId });
   }
+  
 }

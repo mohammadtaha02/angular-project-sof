@@ -20,18 +20,26 @@ export class CatalogComponent implements OnInit {
     this.loadProducts();
   }
 
-  // Load all products from the service
   loadProducts(): void {
-    this.productService.getProducts().subscribe((data: Products[]) => {
-      this.products = data;
-      this.filteredProducts = this.products;  // Initially show all products
+    this.productService.getProducts().subscribe((response: any) => {
+      console.log('Products Response:', response);
+      if (response.status === 'success' && Array.isArray(response.data)) {
+        // Extract the products array from the response
+        this.products = response.data;
+        this.filteredProducts = this.products;
+      } else {
+        console.error('Unexpected response format:', response);
+      }
+    }, error => {
+      console.error('Error fetching products:', error);
     });
   }
+  
 
   // Filter products by category
   filterByCategory(category: string): void {
     if (category === 'ALL') {
-      this.filteredProducts = this.products;  // Show all if "ALL" is selected
+      this.filteredProducts = this.products;
     } else {
       this.filteredProducts = this.products.filter(product => product.category === category);
     }

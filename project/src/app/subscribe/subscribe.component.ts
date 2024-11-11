@@ -12,6 +12,7 @@ export class SubscribeComponent implements OnInit {
   subscribeModel: SubscribeModel;
   isSubscribed: boolean = false;
   loggedIn: boolean = false;
+  isEditing: boolean = false;
 
   constructor(private subscribeService: SubscribeService, private router: Router) {
     // Initialize the subscribeModel with user email from sessionStorage
@@ -31,6 +32,32 @@ export class SubscribeComponent implements OnInit {
     } else {
       this.loggedIn = false; // Set loggedIn to false if no user is logged in
     }
+  }
+
+  editSubscription(): void {
+    this.isEditing = true;
+  }
+
+  onUpdateSubmit(subscribeForm: any): void {
+    if (subscribeForm.invalid) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
+    this.subscribeService.updateSubscriber(this.subscribeModel).subscribe({
+      next: (response: any) => {
+        if (response.status === 'success') {
+          alert('Subscription updated successfully!');
+          this.isEditing = false; // Close edit mode after successful update
+        } else {
+          alert('Failed to update subscription: ' + response.message);
+        }
+      },
+      error: (error: any) => {
+        console.error('Error while updating subscription:', error);
+        alert('An error occurred while updating. Please try again later.');
+      }
+    });
   }
 
   onSubmit(subscribeForm: any): void {

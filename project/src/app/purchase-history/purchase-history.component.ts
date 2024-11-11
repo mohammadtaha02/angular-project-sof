@@ -7,16 +7,34 @@ import { OrderService } from '../services/order.service';
   styleUrls: ['./purchase-history.component.css']
 })
 export class PurchaseHistoryComponent implements OnInit {
-  purchaseHistory: any[] = [];
+  orders: any[] = [];
 
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: OrderService) {}
 
   ngOnInit(): void {
-    const userId = sessionStorage.getItem('currentUserId');
-    if (userId) {
-      this.orderService.getPurchaseHistory(Number(userId)).subscribe((history) => {
-        this.purchaseHistory = history;
-      });
+    const currentUserEmail = sessionStorage.getItem('currentUser');
+
+    if (currentUserEmail) {
+      this.fetchOrders(currentUserEmail);
+    } else {
+      console.error('No user is currently logged in.');
     }
+  }
+
+  fetchOrders(email: string): void {
+    this.orderService.getOrders(email).subscribe(
+      (response) => {
+        console.log(response);
+        if (response.status === 'success') {
+          this.orders = response.data;
+          console.log('Fetched Orders:', this.orders);
+        } else {
+          console.error('Error fetching orders:', response.message);
+        }
+      },
+      (error) => {
+        console.error('Error fetching orders:', error);
+      }
+    );
   }
 }

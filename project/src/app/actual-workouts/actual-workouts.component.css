@@ -44,3 +44,8 @@
   background-color: #f8f9fa;
   border-radius: 5px;
 }
+
+.exercise-image {
+  border-radius: 8px;
+  object-fit: cover;
+}

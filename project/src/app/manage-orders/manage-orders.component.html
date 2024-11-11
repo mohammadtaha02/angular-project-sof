@@ -1,34 +1,49 @@
-<div class="container">
-    <h2>Pending Orders</h2>
-    <table class="table">
-      <thead>
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Manage Orders</h2>
+
+  <div *ngIf="orders.length > 0; else noOrders">
+    <table class="table table-hover">
+      <thead class="thead-dark">
         <tr>
           <th>Order ID</th>
-          <th>Order Date</th>
+          <th>User</th>
+          <th>Purchase Date</th>
           <th>Total Price</th>
-          <th>Action</th>
+          <th>Status</th>
+          <th>Purchased Items</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let order of pendingOrders">
+        <tr *ngFor="let order of orders">
           <td>{{ order.id }}</td>
-          <td>{{ order.purchase_date | date }}</td>
+          <td>{{ order.user_name }} ({{ order.user_email }})</td>
+          <td>{{ order.purchase_date }}</td>
           <td>{{ order.total_price | currency }}</td>
+          <td>{{ order.status }}</td>
           <td>
-            <button class="btn btn-info" (click)="viewOrderDetails(order.id)">View Details</button>
-            <button class="btn btn-success" (click)="confirmOrder(order.id)">Confirm Delivery</button>
+            <ul>
+              <li *ngFor="let item of order.items">
+                {{ item.product_name }} - Quantity: {{ item.quantity }} - Price: {{ item.price | currency }}
+              </li>
+            </ul>
+          </td>
+          <td>
+            <div class="btn-group" role="group">
+              <button class="btn btn-success btn-sm" (click)="updateOrderStatus(order.id, 'Processed')"
+                      [disabled]="order.status === 'Processed'">Processed</button>
+              <button class="btn btn-warning btn-sm" (click)="updateOrderStatus(order.id, 'Shipped')"
+                      [disabled]="order.status === 'Shipped'">Shipped</button>
+              <button class="btn btn-primary btn-sm" (click)="updateOrderStatus(order.id, 'Completed')"
+                      [disabled]="order.status === 'Completed'">Completed</button>
+            </div>
           </td>
         </tr>
       </tbody>
     </table>
-  
-    <div *ngIf="showOrderDetails">
-      <h3>Order Details</h3>
-      <ul>
-        <li *ngFor="let item of selectedOrderDetails">
-          Product: {{ item.product_name }}, Quantity: {{ item.quantity }}, Price: {{ item.price | currency }}
-        </li>
-      </ul>
-    </div>
   </div>
-  
+
+  <ng-template #noOrders>
+    <p class="text-center text-muted">No orders available at the moment.</p>
+  </ng-template>
+</div>

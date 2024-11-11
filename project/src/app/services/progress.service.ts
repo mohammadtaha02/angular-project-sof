@@ -11,7 +11,7 @@ export class ProgressService {
 
   saveUserProgress(userEmail: string, progress: ProgressModel): Observable<any> {
     return this.http.post('http://localhost/backend/php/progress/saveProgress.php', {
-      email: userEmail,  // Pass the email instead of user ID
+      email: userEmail,
       workout_done: progress.workoutDone,
       calories_consumed: progress.caloriesConsumed,
       progress_date: new Date().toISOString().slice(0, 10) // current date

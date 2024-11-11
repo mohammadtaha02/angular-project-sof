@@ -6,16 +6,18 @@
       <h3 class="day-title m-0">{{ schedule.day }}</h3>
     </div>
     <div class="card-body">
-      <div *ngIf="schedule.bigMuscleExercises?.length > 0 || schedule.smallMuscleExercises?.length > 0">
-        <div *ngFor="let workout of schedule.bigMuscleExercises" class="workout-exercise mb-4 p-3 border-bottom">
-          <h4 class="workout-title">{{ workout.name }}</h4>
-          <p class="workout-description" [innerHTML]="workout.description"></p>
-          <p class="workout-details"><strong>Sets:</strong> {{ workout.sets }} | <strong>Reps:</strong> {{ workout.reps }}</p>
-        </div>
-        <div *ngFor="let workout of schedule.smallMuscleExercises" class="workout-exercise mb-4 p-3 border-bottom">
-          <h4 class="workout-title">{{ workout.name }}</h4>
-          <p class="workout-description" [innerHTML]="workout.description"></p>
-          <p class="workout-details"><strong>Sets:</strong> {{ workout.sets }} | <strong>Reps:</strong> {{ workout.reps }}</p>
+      <div *ngIf="schedule.exercises?.length > 0">
+        <div *ngFor="let workout of schedule.exercises" class="workout-exercise mb-4 p-3 border-bottom d-flex align-items-center">
+          <img [src]="workout.image_url" alt="{{ workout.name }}" class="exercise-image mr-3" width="100" height="100">
+          <div>
+            <!-- workout details -->
+            <h4 class="workout-title">{{ workout.name }}</h4>
+            <p class="workout-description" [innerHTML]="workout.description"></p>
+            <p class="workout-details">
+              <strong>Sets:</strong> {{ workout.sets }} | <strong>Reps:</strong> {{ workout.reps }}
+            </p>
+          </div>
+          
         </div>
       </div>
       <div *ngIf="schedule.message" class="rest-day text-center">

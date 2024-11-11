@@ -30,6 +30,19 @@ export class SubscribeService {
   }
 
   updateSubscriber(subscriber: SubscribeModel): Observable<any> {
-    return this.http.post(`${this.apiUrl}/updateSubscriber.php`, subscriber);
+    return this.http.post<any>(`${this.apiUrl}/updateSubscriber.php`, { subscriber });
   }
+  
+  getSubscribers(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/getSubscribers.php`);
+  }
+
+  softDeleteSubscriber(subscriberId: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/softDeleteSubscriber.php`, { id: subscriberId });
+  }
+
+  editSubscriber(subscriber: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/editSubscriber.php`, subscriber);
+  }
+  
 }

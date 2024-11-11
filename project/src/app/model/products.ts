@@ -1,39 +1,48 @@
-export class Products{
+export class Products {
     id: number;
     name: string;
     description: string;
     price: number;
     category: string;
-    quantity!: number;
-    image!: string;
-    selectedQuantity !: number;
-
-    constructor(id: number, name: string, description: string, price: number, category: string, quantity: number, selectedQuantity:number){
-        this.id = id
-        this.name = name
-        this.description = description
-        this.price = price
-        this.category = category
-        this.quantity = quantity
-        this.selectedQuantity = selectedQuantity
-    }
-
-    getId(): number {
-        return this.id;
-    }
-
-    setId(id: number) {
+    quantity: number;
+    image: string;
+    selectedQuantity: number;
+  
+    constructor(
+        id: number = 0,
+        name: string = '',
+        description: string = '',
+        price: number = 0,
+        category: string = '',
+        quantity: number = 0,
+        selectedQuantity: number = 0,
+        image: string = ''
+    ) {
         this.id = id;
-    }
-
-    getName(): string {
-        return this.name;
-    }
-
-    setName(name: string) {
         this.name = name;
+        this.description = description;
+        this.price = price;
+        this.category = category;
+        this.quantity = quantity;
+        this.selectedQuantity = selectedQuantity;
+        this.image = image;
     }
-
+    getId(): number {
+      return this.id;
+    }
+  
+    getName(): string {
+      return this.name;
+    }
+  
+    setId(id: number): void {
+      this.id = id;
+    }
+  
+    setName(name: string): void {
+      this.name = name;
+    }
+  
     getDescription(): string {
         return this.description;
     }
