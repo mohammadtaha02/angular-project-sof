@@ -19,7 +19,6 @@ export class PlanLogicService {
     difficulty: string,
     ageGroup: string
   ): Observable<any> {
-    // Define weekly schedule based on activity level
     let weeklySchedule: number[] = [];
     switch (activityLevel) {
       case 'sedentary': weeklySchedule = [1, 0, 0, 1, 0, 0, 1]; break;
@@ -28,7 +27,6 @@ export class PlanLogicService {
       case 'very_active': weeklySchedule = [1, 1, 0, 1, 0, 1, 1]; break;
     }
   
-    // Fetch exercises from the backend based on fitness goal, difficulty, and age group
     return this.http.get<any[]>(
       `http://localhost/backend/php/exercises/getExercises.php`, {
         params: {
@@ -37,58 +35,60 @@ export class PlanLogicService {
           age_group: ageGroup
         }
     }).pipe(
-        map((exercises) => {
-          // Define sets and reps based on difficulty level
-          let sets: number, reps: number;
-          switch (difficulty.toLowerCase()) {
-            case 'beginner':
-              sets = 3;
-              reps = 12;
-              break;
-            case 'intermediate':
-              sets = 4;
-              reps = 10;
-              break;
-            case 'advanced':
-              sets = 5;
-              reps = 8;
-              break;
-          }
+      map((exercises) => {
+        // Define sets and reps based on difficulty level
+        let sets: number, reps: number;
+        switch (difficulty.toLowerCase()) {
+          case 'beginner':
+            sets = 3;
+            reps = 12;
+            break;
+          case 'intermediate':
+            sets = 4;
+            reps = 10;
+            break;
+          case 'advanced':
+            sets = 5;
+            reps = 8;
+            break;
+        }
   
-          // Add sets and reps to each exercise
-          exercises = exercises.map(exercise => ({
-            ...exercise,
-            sets: sets,
-            reps: reps
-          }));
+        // Add sets and reps to each exercise
+        exercises = exercises.map(exercise => ({
+          ...exercise,
+          sets: sets,
+          reps: reps
+        }));
   
-          // Distribute exercises across training days
-          const totalDays = weeklySchedule.filter((day) => day === 1).length;
-          const exercisesPerDay = Math.ceil(exercises.length / totalDays);
-  
-          const distributedSchedule = weeklySchedule.map((isWorkoutDay, index) => {
-            if (isWorkoutDay) {
-              // Assign exercises for each training day
-              const startIndex = index * exercisesPerDay;
-              const endIndex = startIndex + exercisesPerDay;
-              const assignedExercises = exercises.slice(startIndex, endIndex);
-  
-              return {
-                day: `Workout Day ${index + 1}`,
-                exercises: assignedExercises,
-              };
-            } else {
-              return {
-                day: `Rest Day ${index + 1}`,
-                message: 'Take rest and let your muscles recover.',
-              };
+        // Distribute exercises across training days
+        let exerciseIndex = 0;  // Use a rolling index to distribute exercises more evenly
+        const distributedSchedule = weeklySchedule.map((isWorkoutDay, index) => {
+          if (isWorkoutDay) {
+            const assignedExercises = [];
+            for (let i = 0; i < Math.ceil(exercises.length / weeklySchedule.filter(day => day === 1).length); i++) {
+              if (exerciseIndex >= exercises.length) {
+                exerciseIndex = 0;  // Reset index to assign remaining exercises
+              }
+              assignedExercises.push(exercises[exerciseIndex]);
+              exerciseIndex++;
             }
-          });
   
-          return distributedSchedule;
-        })
-      );
-  }
+            return {
+              day: `Workout Day ${index + 1}`,
+              exercises: assignedExercises,
+            };
+          } else {
+            return {
+              day: `Rest Day ${index + 1}`,
+              message: 'Take rest and let your muscles recover.',
+            };
+          }
+        });
+  
+        return distributedSchedule;
+      })
+    );
+  }  
   
   // 1. Group by age
   groupByAge(age: number): string {

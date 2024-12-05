@@ -41,9 +41,9 @@ export class UsersService {
     return this.http.post<any>(`${this.baseUrl}/checkUser.php`, body, { headers: this.headers })
       .pipe(
         map(response => {
-          if (response && response.email) {
-            // Convert `is_admin` from number (0 or 1) to a boolean
-            const isAdmin = response.is_admin == 1; // `true` if 1, otherwise `false`
+          if (response && response.status !== 'error') {
+            // If user exists and is not deleted, map the user data
+            const isAdmin = response.is_admin == 1; // Convert `is_admin` from number to boolean
             return new User(
               response.email,
               response.password,
@@ -53,13 +53,12 @@ export class UsersService {
               isAdmin
             );
           }
-          return null;
+          return null; // User not found or is deleted
         }),
         catchError(() => of(null))
       );
   }
   
-
   register(email: string, password: string, name: string, male: boolean, birthDate: Date) {
     const isAdmin = false;
     let user = new User(email, password, name, male, birthDate, isAdmin);

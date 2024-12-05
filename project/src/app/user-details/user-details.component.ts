@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../services/users.service';
+import { SubscribeService } from '../services/subscribe.service';
+import { Subscriber } from 'rxjs';
 
 @Component({
   selector: 'app-user-details',
@@ -13,8 +15,14 @@ export class UserDetailsComponent implements OnInit {
   male: boolean = false;
   maleInfo: string = '';
   birthDate: Date = new Date();
+  height !: number ;
+  weight !: number;
+  age !: number;
+  fitness_goal :string = '';
+  fitness_level : string = '';
+  activity_level : string = '';
 
-  constructor(private userService: UsersService) { }
+  constructor(private userService: UsersService , private SubscribeService: SubscribeService) { }
 
   ngOnInit(): void {
     this.email = sessionStorage.getItem('currentUser');
@@ -31,8 +39,16 @@ export class UserDetailsComponent implements OnInit {
           this.email = '';
         }
       });
+      this.SubscribeService.getSubscriber(this.email).subscribe(subscriber => {
+        this.height= subscriber.height;
+        this.weight= subscriber.weight;
+        this.age = subscriber.age
+        this.fitness_goal= subscriber.fitness_goal;
+        this.fitness_level= subscriber.fitness_level;
+        this.activity_level= subscriber.activity_level;
+      })
     } else {
-      this.email = '';
-    }
-  }
+      this.email = '';
+    }
+  }
 }
